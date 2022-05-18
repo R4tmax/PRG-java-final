@@ -1,0 +1,25 @@
+Pozadí příběhu:
+Jste rytíř královského řádu, a byl jste vyslán do vzdáleného regionu království.
+Aby jste vyšetřil příčinu útoků na zdejší farmáře.
+Vaše družina dorazila do vesnice a rozbila zde tábor.
+Jaktožto veterán Řádu jste cvičený v nošení těžkých zbrojí a používání kouzel.
+Poražte všechny monstra v oblasti!
+
+Technické specifikace
+-Hra se bude ovládat textovými příkazy přes terminál
+-funkční rozhraní bude implementováno jako switch
+-Hra se bude odehrávat na dvourozměném poli 5x5, na kterém se budou nacházet různé lokace.
+Ne všechny lokace jsou přímo dostupné (hra bude reálně využívat méně polí, než 25, navíc, některé lokace jsou
+pouze filler.
+    -Centrální lokací je náměstí vsi, hostinec a trh.
+        -Na náměstí lze hovořit ze zvědy z vaší družiny, kteří vám mohou prozradit tipy, jak dál.
+        -V hostinci lze za poplatek odpočívat, což regeneruje HP a Manu.
+        -Na trhu lze koupit potiony či silnější předměty, než je váš starter gear.
+     -V některých místnostech lze sebrat goldy či jiné předměty.
+    -V každé části herní plochy se nachází jedno monstrum, každé monstrum je trochu jiné
+        -Po zahájení souboje s monstrem místnost nelze opustit, dokud monstrum nepadne
+        -pokud při souboji vaše zdraví klesne na 0, hra končí
+        -Poslední a nejsilnější monstrum se bude nacházet v místnosti "Jeskyně", kam vás hra pustí až po poražení
+         dvou dřívějších monster. Úspěšným poražením finálního monstra hra končí.
+
+    -
