@@ -9,6 +9,10 @@ public class Map {
         return gameMap;
     }
 
+    public static Room getCurrentPosition(int x, int y) {
+        return gameMap[x][y];
+    }
+
     public static void printMap () {
         for (int i = 0; i < Map.gameMap.length; i++) {
             for (int j = 0; j < Map.gameMap.length; j++) {
@@ -36,9 +40,9 @@ public class Map {
 
         //third row
         Map.gameMap[2][0] = new Room("PODIVNÁ MÝTINA", "placeholder", false , null, new TheBrute("Brute",50,2), RoomType.HOSTILE);
-        Map.gameMap[2][1] = new Room("Královská cesta", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][2] = new Room("Královská cesta", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][3] = new Room("Královská cesta", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[2][1] = new Room("Křovinatá pláň", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[2][2] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[2][3] = new Room("Okraj mokřadu", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, null, RoomType.HOSTILE);
 
         //fourth row

@@ -1,7 +1,8 @@
 package gameLogic;
 
+
 import gameworld.Map;
-import jdk.swing.interop.SwingInterOpUtils;
+import knight.TheKnight;
 
 import java.util.Scanner;
 
@@ -11,24 +12,25 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        Map.fillMap();
-        Map.printMap();
 
+        Setup.initializeData();
+        Setup.printPrologue();
         Scanner input = new Scanner(System.in);
 
         //TODO:fancy switch
         while (true) {
+            System.out.println("Zadej příkaz");
             String command = input.nextLine();
-            try {
-                switch (command) {
-                    case "move":
-                    case "cast":
-                    case "lookaround":
-                    case "loot":
-                    case "interact":
-                    default:
-                        System.out.println("Neznámý příkaz");
 
+            try {
+                switch (command.toLowerCase()) {
+                    case "move" -> TheKnight.moveKnight(input);
+                    case "cast" -> System.out.println("Yet to implement");
+                    case "lookaround" -> System.out.println("Yet to implement");
+                    case "loot" -> System.out.println("Yet to implement");
+                    case "interact" -> System.out.println("Yet to implement");
+                    case "testposition" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
+                    default -> System.out.println("Neznámý příkaz");
                 }
             }
             catch (Exception e) {

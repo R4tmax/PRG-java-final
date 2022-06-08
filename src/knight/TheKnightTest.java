@@ -3,6 +3,8 @@ package knight;
 import gameworld.Map;
 import org.junit.jupiter.api.Test;
 
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TheKnightTest {
@@ -11,9 +13,10 @@ class TheKnightTest {
     @Test
     void knightPositionTracking () {
         Map.fillMap();
-        System.out.println(TheKnight.getCurrentRoom());
-        TheKnight.setCurrentRoom(Map.gameMap[3][2]);
-        System.out.println(TheKnight.getCurrentRoom());
+        System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
+        TheKnight.position.horizontal -=1;
+        System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
+
     }
 
 
