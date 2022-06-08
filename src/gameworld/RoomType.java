@@ -1,5 +1,5 @@
 package gameworld;
 
 public enum RoomType {
-    RECON,TALKABLE,TRADABLE,HOSTILE
+    RECON,TALKABLE,TRADABLE,HOSTILE,REST_AREA
 }

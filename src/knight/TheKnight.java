@@ -9,6 +9,7 @@ public class TheKnight {
     public static int mana = 50;
     public static int armor = 0;
     protected static Room currentRoom = Map.gameMap[4][2];
+    public static int goldHeld = 10;
 
     public static Room getCurrentRoom() {
         return currentRoom;
