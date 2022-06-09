@@ -10,6 +10,7 @@ public class TheMatriarch extends Monster implements HostileActions{
 
     }
 
+    //TODO:Attacks twice in a row
     @Override
     public int damageModifier() {
         return 0;

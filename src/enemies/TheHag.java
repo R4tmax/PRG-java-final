@@ -10,6 +10,7 @@ public class TheHag extends Monster implements HostileActions{
 
     }
 
+    //TODO: Attacks damage mana pools as well
     @Override
     public int damageModifier() {
         return 0;

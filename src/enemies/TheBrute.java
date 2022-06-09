@@ -11,6 +11,7 @@ public class TheBrute extends Monster implements HostileActions{
 
     }
 
+    //TODO: Attacks once, but with higher damage than others
     @Override
     public int damageModifier() {
         return 0;

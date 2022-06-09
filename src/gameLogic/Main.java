@@ -17,7 +17,7 @@ public class Main {
         Setup.printPrologue();
         Scanner input = new Scanner(System.in);
 
-        //TODO:fancy switch
+
         while (true) {
             System.out.println("Zadej příkaz");
             String command = input.nextLine();
@@ -29,6 +29,10 @@ public class Main {
                     case "lookaround" -> System.out.println("Yet to implement");
                     case "loot" -> System.out.println("Yet to implement");
                     case "interact" -> System.out.println("Yet to implement");
+                    case "quitgame" -> {
+                        System.out.println("Thanks for playing!");
+                        return;
+                    }
                     case "testposition" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
                     default -> System.out.println("Neznámý příkaz");
                 }
