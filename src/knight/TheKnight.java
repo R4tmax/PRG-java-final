@@ -11,9 +11,11 @@ import static gameworld.Map.getCurrentPosition;
 public class TheKnight {
     public static int health = 200;
     public static int mana = 50;
-    public static int armor = 0;
+    public static int armor = 1;
+    public static int damage = 10;
     public static int goldHeld = 10;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
+    public static boolean isDead = false;
 
 
     public static KnightCoordinates getPosition() {

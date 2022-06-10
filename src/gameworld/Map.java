@@ -1,13 +1,15 @@
 package gameworld;
 
 import enemies.TheBrute;
+import enemies.TheHag;
+import enemies.TheMatriarch;
 
 public class Map {
     public static Room [][] gameMap = new Room[5][5];
 
-    public static Room[][] getGameMap() {
+    /*public static Room[][] getGameMap() {
         return gameMap;
-    }
+    }*/
 
     public static Room getCurrentPosition(int x, int y) {
         return gameMap[x][y];
@@ -27,7 +29,7 @@ public class Map {
         //First row - Northernmost
         Map.gameMap[0][0] = new Room("Severozápadní pahorkatina", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[0][1] = new Room("Jeskynní úbočí", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[0][2] = new Room("HNÍZDO MONSTER", "Odsud pochází všechna monstra, co zužují kraj! Poraž matariarchu a skonči s tím!", true , null, null, RoomType.HOSTILE);
+        Map.gameMap[0][2] = new Room("HNÍZDO MONSTER", "Odsud pochází všechna monstra, co zužují kraj! Poraž matariarchu a skonči s tím!", true , null, new TheMatriarch("Matriarch",800, 8), RoomType.HOSTILE);
         Map.gameMap[0][3] = new Room("Roklinka", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[0][4] = new Room("Severovýchodní pahorkatina", "placeholder", false , null, null, RoomType.RECON);
 
@@ -39,11 +41,11 @@ public class Map {
         Map.gameMap[1][4] = new Room("Podmáčený les", "placeholder", false , null, null, RoomType.RECON);
 
         //third row
-        Map.gameMap[2][0] = new Room("PODIVNÁ MÝTINA", "placeholder", false , null, new TheBrute("Brute",50,2), RoomType.HOSTILE);
+        Map.gameMap[2][0] = new Room("PODIVNÁ MÝTINA", "placeholder", false , null, new TheBrute("Brute",1000,5,1000), RoomType.HOSTILE);
         Map.gameMap[2][1] = new Room("Křovinatá pláň", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[2][2] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[2][3] = new Room("Okraj mokřadu", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, null, RoomType.HOSTILE);
+        Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, new TheHag("Hag", 500,5,750), RoomType.HOSTILE);
 
         //fourth row
         Map.gameMap[3][0] = new Room("Polní cesta", "placeholder", false , null, null, RoomType.RECON);

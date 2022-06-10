@@ -3,7 +3,7 @@ package enemies;
 public interface HostileActions {
 
    void initialMessage();
-   void attackPattern();
+   void attackPattern(int damageValue);
 
 
 

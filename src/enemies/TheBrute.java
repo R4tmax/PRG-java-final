@@ -1,10 +1,14 @@
 package enemies;
 
+import knight.TheKnight;
+
 public class TheBrute extends Monster implements HostileActions{
 
-    public TheBrute(String name, int health, int damage) {
-        super(name, health, damage);
+
+    public TheBrute(String name, int health, int damage,int goldDrop) {
+        super(name, health, damage, goldDrop);
     }
+
 
     @Override
     public void initialMessage() {
@@ -16,6 +20,10 @@ public class TheBrute extends Monster implements HostileActions{
 
     //TODO: Attacks once, but with higher damage than others
     @Override
-    public void attackPattern() {
+    public void attackPattern(int damageValue) {
+        damageValue += this.damage - TheKnight.armor;
+        damageValue *= 1.25;
+        TheKnight.health -= damageValue;
+        System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
     }
 }

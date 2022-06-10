@@ -1,8 +1,10 @@
 package enemies;
 
+import knight.TheKnight;
+
 public class TheHag extends Monster implements HostileActions{
-    public TheHag(String name, int health, int damage) {
-        super(name, health, damage);
+    public TheHag(String name, int health, int damage, int goldDrop) {
+        super(name, health, damage, goldDrop);
     }
 
     @Override
@@ -17,6 +19,11 @@ public class TheHag extends Monster implements HostileActions{
 
     //TODO: Attacks damage mana pools as well
     @Override
-    public void attackPattern() {
+    public void attackPattern(int damageValue) {
+        damageValue += this.damage - TheKnight.armor;
+        TheKnight.health -= damageValue;
+        TheKnight.mana -= damageValue;
+        System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
+        System.out.println("Stejné poškození obdržel i tvůj mana pool!");
     }
 }
