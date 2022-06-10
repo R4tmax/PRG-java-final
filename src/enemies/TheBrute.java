@@ -8,12 +8,14 @@ public class TheBrute extends Monster implements HostileActions{
 
     @Override
     public void initialMessage() {
-
+        System.out.println("""
+                            Stojí proti tobě obrovské stvoření, minimálně tři metry vysoké!
+                            Není jiného zbytí, tohle bude maraton!
+                            """);
     }
 
     //TODO: Attacks once, but with higher damage than others
     @Override
-    public int damageModifier() {
-        return 0;
+    public void attackPattern() {
     }
 }

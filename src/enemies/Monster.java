@@ -1,6 +1,6 @@
 package enemies;
 
-public abstract class Monster {
+public abstract class Monster implements HostileActions{
     public String name;
     public int Health;
     public int damage;
@@ -10,4 +10,6 @@ public abstract class Monster {
         Health = health;
         this.damage = damage;
     }
+
+
 }

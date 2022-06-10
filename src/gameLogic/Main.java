@@ -19,14 +19,20 @@ public class Main {
 
 
         while (true) {
+
+            if ((Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).roomEnemy != null)){
+                Combat.encounter();
+            }
+
             System.out.println("Zadej příkaz");
             String command = input.nextLine();
+
 
             try {
                 switch (command.toLowerCase()) {
                     case "move" -> TheKnight.moveKnight(input);
                     case "cast" -> System.out.println("Yet to implement");
-                    case "lookaround" -> System.out.println("Yet to implement");
+                    case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).name + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).description);
                     case "loot" -> System.out.println("Yet to implement");
                     case "interact" -> System.out.println("Yet to implement");
                     case "quitgame" -> {
@@ -38,7 +44,7 @@ public class Main {
                 }
             }
             catch (Exception e) {
-                System.out.println("Error");
+                System.out.println("Input processing error!");
             }
 
         }

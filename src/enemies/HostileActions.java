@@ -2,8 +2,8 @@ package enemies;
 
 public interface HostileActions {
 
-   public void initialMessage();
-   public int damageModifier();
+   void initialMessage();
+   void attackPattern();
 
 
 
