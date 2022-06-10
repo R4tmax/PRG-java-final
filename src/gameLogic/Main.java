@@ -12,7 +12,9 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-
+        //TODO: Improve encapsulation in general
+        //TODO: Docs
+        //TODO: Tests
         Setup.initializeData();
         Setup.printPrologue();
         Scanner input = new Scanner(System.in);
@@ -20,9 +22,16 @@ public class Main {
 
         while (true) {
 
+
             if ((Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).roomEnemy != null)){
                 Combat.encounter();
             }
+
+            if(!gameStateHandler.validateKnightState()) {
+                System.out.println("Game over!");
+                return;
+            }
+
 
             System.out.println("Zadej příkaz");
             String command = input.nextLine();
@@ -33,6 +42,7 @@ public class Main {
                     case "move" -> TheKnight.moveKnight(input);
                     case "cast" -> System.out.println("Yet to implement");
                     case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).name + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).description);
+                    case "status" -> TheKnight.printKnightStatusExploration();
                     case "loot" -> System.out.println("Yet to implement");
                     case "interact" -> System.out.println("Yet to implement");
                     case "quitgame" -> {

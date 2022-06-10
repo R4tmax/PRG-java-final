@@ -1,15 +1,12 @@
 package gameworld;
 
+import enemies.Monster;
 import enemies.TheBrute;
 import enemies.TheHag;
 import enemies.TheMatriarch;
 
 public class Map {
     public static Room [][] gameMap = new Room[5][5];
-
-    /*public static Room[][] getGameMap() {
-        return gameMap;
-    }*/
 
     public static Room getCurrentPosition(int x, int y) {
         return gameMap[x][y];

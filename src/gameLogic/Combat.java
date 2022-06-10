@@ -21,6 +21,7 @@ public class Combat extends Thread {
            if (damageValue == 6) damageValue += damageValue;
 
            if (turnCounter % 2 == 0) {
+               TheKnight.printKnightStatusCombat();
                damageValue += TheKnight.damage;
                enemyPresent.health -= damageValue;
                System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
@@ -29,20 +30,12 @@ public class Combat extends Thread {
                 enemyPresent.attackPattern(damageValue);
            }
 
-           if (enemyPresent.health <= 0) {
-               enemyPresent.isDead = true;
-               System.out.println("Good job!");
-               break;
-           } else if (TheKnight.health <= 0) {
-               TheKnight.isDead = true;
-               System.out.println("Game over!");
-               break;
-           }
+           if (!validateValues(enemyPresent)) break;
 
            turnCounter++;
 
            try {
-               sleep(2000);
+               sleep(1500);
            } catch (InterruptedException e) {
                throw new RuntimeException(e);
            }
@@ -52,5 +45,29 @@ public class Combat extends Thread {
 
 
     }
+
+    public static boolean validateValues(Monster enemyPresent) {
+
+        if (TheKnight.mana <= 0) {
+            TheKnight.mana = 0;
+        }
+
+        if (enemyPresent.health <= 0) {
+            enemyPresent.isDead = true;
+            System.out.println("Combat won! Good job!");
+            System.out.println("Looted gold: " + enemyPresent.goldDrop);
+            TheKnight.goldHeld += enemyPresent.goldDrop;
+            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy = null;
+            return false;
+        } else if (TheKnight.health <= 0) {
+            TheKnight.isDead = true;
+            System.out.println("Combat lost, better luck next time!");
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 }

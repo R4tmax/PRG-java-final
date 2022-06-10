@@ -11,13 +11,11 @@ import static gameworld.Map.getCurrentPosition;
 public class TheKnight {
     public static int health = 200;
     public static int mana = 50;
-    public static int armor = 1;
-    public static int damage = 10;
-    public static int goldHeld = 10;
+    public static int armor = 2;
+    public static int damage = 15;
+    public static int goldHeld = 100;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
     public static boolean isDead = false;
-
-
     public static KnightCoordinates getPosition() {
         return position;
     }
@@ -47,7 +45,6 @@ public class TheKnight {
 
     private static void validateMove (int tmpX, int tmpY) {
         try {
-            //getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical);
             if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).isLocked) {
                 System.out.println("Máš pocit, že bys tady ještě neměl být, zkus prozkoumat jinou část oblasti!");
                 TheKnight.position.horizontal = tmpX;
@@ -60,6 +57,23 @@ public class TheKnight {
         }
 
 
+    }
+
+
+    public static void printKnightStatusExploration () {
+        System.out.println("Momentální zdraví:" + TheKnight.health);
+        if (TheKnight.mana > 0) System.out.println("Momentální mana: " + TheKnight.mana);
+        else System.out.println("Nemáš žádnou manu!");
+        System.out.println("Tvůj base damage je:" + TheKnight.damage);
+        System.out.println("Tvůj armor je:" + TheKnight.armor);
+        System.out.println("Neseš " + TheKnight.goldHeld + " zlaťáků.");
+    }
+    public static void printKnightStatusCombat () {
+        System.out.println("Momentální zdraví:" + TheKnight.health);
+        if (TheKnight.mana > 0) System.out.println("Momentální mana: " + TheKnight.mana);
+        else System.out.println("Nemáš žádnou manu!");
+        System.out.println("Tvůj base damage je:" + TheKnight.damage);
+        System.out.println("Tvůj armor je:" + TheKnight.armor);
     }
 
 }
