@@ -4,6 +4,9 @@ import enemies.Monster;
 import enemies.TheBrute;
 import enemies.TheHag;
 import enemies.TheMatriarch;
+import items.Consumable;
+import items.ConsumableType;
+import items.MoneyLoot;
 
 public class Map {
     public static Room [][] gameMap = new Room[5][5];
@@ -24,11 +27,11 @@ public class Map {
     public static void fillMap () {
 
         //First row - Northernmost
-        Map.gameMap[0][0] = new Room("Severozápadní pahorkatina", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[0][0] = new Room("Severozápadní pahorkatina", "placeholder", false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
         Map.gameMap[0][1] = new Room("Jeskynní úbočí", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[0][2] = new Room("HNÍZDO MONSTER", "Odsud pochází všechna monstra, co zužují kraj! Poraž matariarchu a skonči s tím!", true , null, new TheMatriarch("Matriarch",800, 8), RoomType.HOSTILE);
         Map.gameMap[0][3] = new Room("Roklinka", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[0][4] = new Room("Severovýchodní pahorkatina", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[0][4] = new Room("Severovýchodní pahorkatina", "placeholder", false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
 
         //Second row
         Map.gameMap[1][0] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
@@ -46,17 +49,17 @@ public class Map {
 
         //fourth row
         Map.gameMap[3][0] = new Room("Polní cesta", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[3][1] = new Room("Pšeničné pole", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[3][2] = new Room("Louka", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[3][1] = new Room("Pšeničné pole", "placeholder", false , new Consumable("Mouldy bread",-5,ConsumableType.HEALTH_FILL), null, RoomType.RECON);
+        Map.gameMap[3][2] = new Room("Louka", "placeholder", false , new MoneyLoot("Rare herb",50), null, RoomType.RECON);
         Map.gameMap[3][3] = new Room("Nížina", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[3][4] = new Room("Říční meandr", "placeholder", false , null, null, RoomType.RECON);
 
         //fifth row
-        Map.gameMap[4][0] = new Room("Královská cesta", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[4][0] = new Room("Královská cesta", "placeholder", false , new Consumable("Whetting stone",5,ConsumableType.DAMAGE_BOOST), null, RoomType.RECON);
         Map.gameMap[4][1] = new Room("Hostinec", "placeholder", false , null, null, RoomType.REST_AREA);
-        Map.gameMap[4][2] = new Room("Nádvoří vesnice", "Nádvoří zdejší vesnice, momentálně zde táboří členové a zvědi družiny. Severním směrem se rozléhají zdejší louky a pole. Většina zdejších proudí buďto do nedalekého hostince u cesty, nebo směrem k tržišti, hlouběji ve vsi, směrem na východ.", false , null, null, RoomType.TALKABLE);
+        Map.gameMap[4][2] = new Room("Nádvoří vesnice", "Nádvoří zdejší vesnice, momentálně zde táboří členové a zvědi družiny. Severním směrem se rozléhají zdejší louky a pole. Většina zdejších proudí buďto do nedalekého hostince u cesty, nebo směrem k tržišti, hlouběji ve vsi, směrem na východ.", false , new Consumable("Blessed Health potion",200 ,ConsumableType.HEALTH_FILL), null, RoomType.TALKABLE);
         Map.gameMap[4][3] = new Room("Tržiště", "placeholder", false , null, null, RoomType.TRADABLE);
-        Map.gameMap[4][4] = new Room("Břeh řeky", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[4][4] = new Room("Břeh řeky", "placeholder", false , new Consumable("Blue herb",25,ConsumableType.MANA_FILL), null, RoomType.RECON);
 
 
     }

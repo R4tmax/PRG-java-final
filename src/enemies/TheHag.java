@@ -17,13 +17,13 @@ public class TheHag extends Monster implements HostileActions{
                             """);
     }
 
-    //TODO: Attacks damage mana pools as well
+    //TODO: Attacks damage currentMana pools as well
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
-        TheKnight.health -= damageValue;
-        TheKnight.mana -= damageValue;
+        TheKnight.currentHealth -= damageValue;
+        TheKnight.currentMana -= damageValue;
         System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
-        System.out.println("Stejné poškození obdržel i tvůj mana pool!");
+        System.out.println("Stejné poškození obdržel i tvůj currentMana pool!");
     }
 }

@@ -2,6 +2,7 @@ package gameLogic;
 
 
 import gameworld.Map;
+import items.Item;
 import knight.TheKnight;
 
 import java.util.Scanner;
@@ -43,7 +44,8 @@ public class Main {
                     case "cast" -> System.out.println("Yet to implement");
                     case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).name + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).description);
                     case "status" -> TheKnight.printKnightStatusExploration();
-                    case "loot" -> System.out.println("Yet to implement");
+                    case "loot" -> Item.attemptPickup();
+                    case "showinventory" -> TheKnight.printInventoryContent();
                     case "interact" -> System.out.println("Yet to implement");
                     case "quitgame" -> {
                         System.out.println("Thanks for playing!");

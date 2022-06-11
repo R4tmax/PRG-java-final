@@ -23,7 +23,7 @@ public class TheBrute extends Monster implements HostileActions{
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
         damageValue *= 1.25;
-        TheKnight.health -= damageValue;
+        TheKnight.currentHealth -= damageValue;
         System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
     }
 }

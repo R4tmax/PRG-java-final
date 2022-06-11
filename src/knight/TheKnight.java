@@ -1,19 +1,24 @@
 package knight;
 
 
-import gameworld.Map;
-import gameworld.Room;
+import items.Consumable;
+import items.Item;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static gameworld.Map.getCurrentPosition;
 
 public class TheKnight {
-    public static int health = 200;
-    public static int mana = 50;
+    public static final int maxHealth = 200;
+    public static int currentHealth = 200;
+    public static final int maxMana = 50;
+    public static int currentMana = 50;
     public static int armor = 2;
     public static int damage = 15;
     public static int goldHeld = 100;
+    public static final ArrayList<Consumable> inventory = new ArrayList<>();
+    public static final int inventoryCap = 5;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
     public static boolean isDead = false;
     public static KnightCoordinates getPosition() {
@@ -61,19 +66,25 @@ public class TheKnight {
 
 
     public static void printKnightStatusExploration () {
-        System.out.println("Momentální zdraví:" + TheKnight.health);
-        if (TheKnight.mana > 0) System.out.println("Momentální mana: " + TheKnight.mana);
+        System.out.println("Momentální zdraví:" + TheKnight.currentHealth);
+        if (TheKnight.currentMana > 0) System.out.println("Momentální currentMana: " + TheKnight.currentMana);
         else System.out.println("Nemáš žádnou manu!");
         System.out.println("Tvůj base damage je:" + TheKnight.damage);
         System.out.println("Tvůj armor je:" + TheKnight.armor);
         System.out.println("Neseš " + TheKnight.goldHeld + " zlaťáků.");
     }
     public static void printKnightStatusCombat () {
-        System.out.println("Momentální zdraví:" + TheKnight.health);
-        if (TheKnight.mana > 0) System.out.println("Momentální mana: " + TheKnight.mana);
+        System.out.println("Momentální zdraví:" + TheKnight.currentHealth);
+        if (TheKnight.currentMana > 0) System.out.println("Momentální currentMana: " + TheKnight.currentMana);
         else System.out.println("Nemáš žádnou manu!");
         System.out.println("Tvůj base damage je:" + TheKnight.damage);
         System.out.println("Tvůj armor je:" + TheKnight.armor);
+    }
+
+    public static void printInventoryContent () {
+        for (Consumable item : inventory ) {
+            System.out.println(item);
+        }
     }
 
 }

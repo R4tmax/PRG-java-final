@@ -22,9 +22,9 @@ public class TheMatriarch extends Monster implements HostileActions{
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
-        TheKnight.health -= damageValue;
+        TheKnight.currentHealth -= damageValue;
         System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
-        TheKnight.health -= damageValue;
+        TheKnight.currentHealth -= damageValue;
         System.out.println("Byl jsi zasažen podruhé od " + this.name + " za " + damageValue + " bodů poškození!");
         System.out.println("Matriarcha je rychlý protivník!!!");
     }

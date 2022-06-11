@@ -48,8 +48,8 @@ public class Combat extends Thread {
 
     public static boolean validateValues(Monster enemyPresent) {
 
-        if (TheKnight.mana <= 0) {
-            TheKnight.mana = 0;
+        if (TheKnight.currentMana <= 0) {
+            TheKnight.currentMana = 0;
         }
 
         if (enemyPresent.health <= 0) {
@@ -59,7 +59,7 @@ public class Combat extends Thread {
             TheKnight.goldHeld += enemyPresent.goldDrop;
             Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy = null;
             return false;
-        } else if (TheKnight.health <= 0) {
+        } else if (TheKnight.currentHealth <= 0) {
             TheKnight.isDead = true;
             System.out.println("Combat lost, better luck next time!");
             return false;
