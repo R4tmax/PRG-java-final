@@ -49,7 +49,8 @@ public class Main {
 
             System.out.println(">");
             String command = input.nextLine();
-
+            command = command.replaceAll("\\s","");
+            //TODO: extend whitespace strip functionality
 
             try {
                 switch (command.toLowerCase()) {

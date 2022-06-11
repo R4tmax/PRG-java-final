@@ -14,9 +14,8 @@ public class Combat extends Thread {
         int damageValue;
         String command;
         Random damageRoll = new Random();
-       Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy;
-        //if (enemyPresent instanceof TheBrute) ((TheBrute) enemyPresent).initialMessage();
-       enemyPresent.initialMessage();
+        Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy;
+        enemyPresent.initialMessage();
 
        while (true) {
            damageValue = damageRoll.nextInt(1,7);
@@ -29,6 +28,11 @@ public class Combat extends Thread {
                 switch (command) {
                     case "attack" -> {
                         damageValue += TheKnight.damage;
+                        double rollForCrit = Math.random();
+                        if (rollForCrit > 0.98) {
+                            System.out.println("Critical hit!");
+                            damageValue *= 2;
+                        }
                         enemyPresent.health -= damageValue;
                         System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
                     }
