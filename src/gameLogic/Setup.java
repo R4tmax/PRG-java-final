@@ -1,5 +1,6 @@
 package gameLogic;
 
+import gameworld.Interactions;
 import gameworld.Map;
 
 public class Setup extends Thread {
@@ -9,6 +10,7 @@ public class Setup extends Thread {
         Map.printMap();
     }
 
+
     public static void printPrologue () {
         System.out.println("""
                             Vítejte v mé adventuře!
@@ -16,11 +18,7 @@ public class Setup extends Thread {
                             ©2022
                             """);
 
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        slowDownText();
 
         System.out.println("""
                             Jste rytíř zdejšího království,
@@ -29,16 +27,24 @@ public class Setup extends Thread {
                             podivného původu.
                             """);
 
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        slowDownText();
 
         System.out.println("""
                             Pokud se dostaneš do úzkých, použij příkaz HELP!
                             Hodně štěstí!
                             """);
+
+        slowDownText();
+
+        Map.printPosition();
+    }
+
+    private static void slowDownText () {
+        try {
+            sleep(1500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package gameLogic;
 
 
+import gameworld.Interactions;
 import gameworld.Map;
 import items.Item;
 import knight.*;
@@ -18,6 +19,7 @@ public class Main {
         //TODO: Tests
         Setup.initializeData();
         Setup.printPrologue();
+        Interactions.initializeDialogues();
         Scanner input = new Scanner(System.in);
         boolean endgameReady = false;
 
@@ -45,7 +47,7 @@ public class Main {
 
 
 
-            System.out.println("Zadej příkaz");
+            System.out.println(">");
             String command = input.nextLine();
 
 
@@ -58,13 +60,13 @@ public class Main {
                     case "showinventory" -> TheKnight.printInventoryContent();
                     case "useitem" -> TheKnight.useItem(input);
                     case "cast" -> Spells.castSpells(input);
-                    case "interact" -> System.out.println("Yet to implement");
+                    case "interact" -> Interactions.attemptInteraction(input);
                     case "quitgame" -> {
                         System.out.println("Thanks for playing!");
                         return;
                     }
                     case "testposition" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
-                    default -> System.out.println("Neznámý příkaz");
+                    default -> System.out.println("Unknown command, use HELP command if you are lost.");
                 }
             }
             catch (Exception e) {

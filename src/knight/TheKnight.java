@@ -1,6 +1,7 @@
 package knight;
 
 
+import gameworld.Map;
 import items.Consumable;
 import items.Item;
 
@@ -46,6 +47,7 @@ public class TheKnight {
             }
 
         validateMove(tmpHorizontal,tmpVertical);
+        Map.printPosition();
 
     }
 
