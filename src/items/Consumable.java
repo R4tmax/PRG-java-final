@@ -20,6 +20,10 @@ public class Consumable extends Item implements PickupHandling{
                 '}';
     }
 
+    public ConsumableType getItemType() {
+        return itemType;
+    }
+
     @Override
     public void pickUpMessage() {
         System.out.println("You picked up " + this.name);
@@ -35,4 +39,21 @@ public class Consumable extends Item implements PickupHandling{
             System.out.println("Inventory full!");
         }
     }
+
+    public void executeConsumableEffect(ConsumableType type, int value) {
+        switch (type) {
+            case HEALTH_FILL -> {
+                TheKnight.currentHealth += value;
+                if (TheKnight.currentHealth >= TheKnight.maxHealth) TheKnight.currentHealth = 200;
+            }
+            case MANA_FILL -> {
+                TheKnight.currentMana += value;
+                if (TheKnight.currentMana >= TheKnight.maxMana) TheKnight.currentMana = 50;
+            }
+            case DAMAGE_BOOST -> TheKnight.damage += value;
+            case ARMOR_BOOST -> TheKnight.armor += value;
+        }
+
+    }
+
 }

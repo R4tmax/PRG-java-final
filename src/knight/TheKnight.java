@@ -39,6 +39,7 @@ public class TheKnight {
                     case "west" -> TheKnight.position.vertical -= 1;
                     case "east" -> TheKnight.position.vertical += 1;
                     case "south" -> TheKnight.position.horizontal += 1;
+                    default -> System.out.println("Unknown direction");
                 }
             } catch (Exception e) {
                 System.out.println("Error");
@@ -85,6 +86,21 @@ public class TheKnight {
         for (Consumable item : inventory ) {
             System.out.println(item);
         }
+    }
+
+    public static void useItem(Scanner input) {
+        System.out.println("Please enter the name of item you want to use.");
+        String toUse = input.nextLine();
+        boolean flag = false;
+
+        for (Consumable consumable : inventory) {
+            if (toUse.equals(consumable.getName())) {
+                consumable.executeConsumableEffect(consumable.getItemType(), consumable.getEffectiveValue());
+                inventory.remove(consumable);
+                return;
+            }
+        }
+        System.out.println("No such item was found");
     }
 
 }

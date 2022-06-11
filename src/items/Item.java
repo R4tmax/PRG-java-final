@@ -12,6 +12,14 @@ public abstract class Item implements PickupHandling{
         this.effectiveValue = effectiveValue;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getEffectiveValue() {
+        return effectiveValue;
+    }
+
     public static void attemptPickup () {
         if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomLoot == null) {
             System.out.println("There is nothing to pickup here!");

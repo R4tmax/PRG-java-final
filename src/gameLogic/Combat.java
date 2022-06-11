@@ -5,12 +5,14 @@ import gameworld.Map;
 import knight.*;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Combat extends Thread {
 
-    public static void encounter () {
+    public static void encounter (Scanner input) {
         int turnCounter = 0;
         int damageValue;
+        String command;
         Random damageRoll = new Random();
        Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy;
         //if (enemyPresent instanceof TheBrute) ((TheBrute) enemyPresent).initialMessage();
@@ -22,9 +24,21 @@ public class Combat extends Thread {
 
            if (turnCounter % 2 == 0) {
                TheKnight.printKnightStatusCombat();
-               damageValue += TheKnight.damage;
-               enemyPresent.health -= damageValue;
-               System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
+               System.out.println("How do you want to proceed?");
+                command = input.nextLine();
+                switch (command) {
+                    case "attack" -> {
+                        damageValue += TheKnight.damage;
+                        enemyPresent.health -= damageValue;
+                        System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
+                    }
+                    case "useitem" -> TheKnight.useItem(input);
+                    default -> {
+                        System.out.println("Wrong command!");
+                        turnCounter--;
+                    }
+                }
+
 
            } else {
                 enemyPresent.attackPattern(damageValue);
