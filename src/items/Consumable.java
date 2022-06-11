@@ -44,11 +44,11 @@ public class Consumable extends Item implements PickupHandling{
         switch (type) {
             case HEALTH_FILL -> {
                 TheKnight.currentHealth += value;
-                if (TheKnight.currentHealth >= TheKnight.maxHealth) TheKnight.currentHealth = 200;
+                TheKnight.preventOverheal();
             }
             case MANA_FILL -> {
                 TheKnight.currentMana += value;
-                if (TheKnight.currentMana >= TheKnight.maxMana) TheKnight.currentMana = 50;
+                TheKnight.preventOvercast();
             }
             case DAMAGE_BOOST -> TheKnight.damage += value;
             case ARMOR_BOOST -> TheKnight.armor += value;

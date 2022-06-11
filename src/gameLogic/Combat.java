@@ -33,6 +33,7 @@ public class Combat extends Thread {
                         System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
                     }
                     case "useitem" -> TheKnight.useItem(input);
+                    case "cast" -> Spells.castSpells(input);
                     default -> {
                         System.out.println("Wrong command!");
                         turnCounter--;

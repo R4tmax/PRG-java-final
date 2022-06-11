@@ -3,7 +3,7 @@ package gameLogic;
 
 import gameworld.Map;
 import items.Item;
-import knight.TheKnight;
+import knight.*;
 
 import java.util.Scanner;
 
@@ -19,6 +19,7 @@ public class Main {
         Setup.initializeData();
         Setup.printPrologue();
         Scanner input = new Scanner(System.in);
+        boolean endgameReady = false;
 
 
         while (true) {
@@ -31,7 +32,17 @@ public class Main {
             if(!gameStateHandler.validateKnightState()) {
                 System.out.println("Game over!");
                 return;
+            } else if (!endgameReady) {
+                endgameReady = gameStateHandler.unlockFinalBoss();
+            } else {
+                if (gameStateHandler.gameWon()) {
+                    System.out.println("Your task is done!");
+                    System.out.println("Thanks for playing!");
+                    return;
+                }
             }
+
+
 
 
             System.out.println("Zadej příkaz");
@@ -46,7 +57,7 @@ public class Main {
                     case "loot" -> Item.attemptPickup();
                     case "showinventory" -> TheKnight.printInventoryContent();
                     case "useitem" -> TheKnight.useItem(input);
-                    case "cast" -> System.out.println("Yet to implement");
+                    case "cast" -> Spells.castSpells(input);
                     case "interact" -> System.out.println("Yet to implement");
                     case "quitgame" -> {
                         System.out.println("Thanks for playing!");

@@ -66,6 +66,14 @@ public class TheKnight {
     }
 
 
+    public static void preventOverheal () {
+        if (TheKnight.currentHealth > TheKnight.maxHealth) TheKnight.currentHealth = TheKnight.maxHealth;
+    }
+
+    public static void preventOvercast() {
+        if (TheKnight.currentMana > TheKnight.maxMana) TheKnight.currentMana = TheKnight.maxMana;
+    }
+
     public static void printKnightStatusExploration () {
         System.out.println("Momentální zdraví:" + TheKnight.currentHealth);
         if (TheKnight.currentMana > 0) System.out.println("Momentální currentMana: " + TheKnight.currentMana);
@@ -91,7 +99,6 @@ public class TheKnight {
     public static void useItem(Scanner input) {
         System.out.println("Please enter the name of item you want to use.");
         String toUse = input.nextLine();
-        boolean flag = false;
 
         for (Consumable consumable : inventory) {
             if (toUse.equals(consumable.getName())) {

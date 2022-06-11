@@ -45,7 +45,7 @@ public class Map {
         Map.gameMap[2][1] = new Room("Křovinatá pláň", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[2][2] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
         Map.gameMap[2][3] = new Room("Okraj mokřadu", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, new TheHag("Hag", 500,5,750), RoomType.HOSTILE);
+        Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, new TheHag("Hag", 600,5,750), RoomType.HOSTILE);
 
         //fourth row
         Map.gameMap[3][0] = new Room("Polní cesta", "placeholder", false , null, null, RoomType.RECON);
