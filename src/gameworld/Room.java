@@ -4,10 +4,10 @@ import enemies.Monster;
 import items.Item;
 
 public class Room {
-    public String name;
-    public String description;
-    public boolean isLocked;
-    public Item roomLoot;
+    protected String name;
+    protected String description;
+    protected boolean isLocked;
+    protected Item roomLoot;
     public Monster roomEnemy;
     public RoomType roomBehavior;
 
@@ -17,6 +17,30 @@ public class Room {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public boolean getLockedStatus() {
+        return isLocked;
+    }
+
+    public Item getRoomLoot() {
+        return roomLoot;
+    }
+
+    public void setRoomLoot(Item roomLoot) {
+        this.roomLoot = roomLoot;
+    }
+
+    public Monster getRoomEnemy() {
+        return roomEnemy;
+    }
+
+    public void setRoomEnemy(Monster roomEnemy) {
+        this.roomEnemy = roomEnemy;
     }
 
     public Room(String name, String description, boolean isLocked, Item roomLoot, Monster roomEnemy, RoomType roomBehavior) {

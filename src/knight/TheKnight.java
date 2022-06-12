@@ -1,6 +1,7 @@
 package knight;
 
 
+import enemies.Monster;
 import gameworld.Map;
 import items.Consumable;
 
@@ -16,7 +17,7 @@ public class TheKnight {
     public static final int maxMana = 50;
     public static int currentMana = 50;
     public static int armor = 2;
-    public static int damage = 15;
+    public static int damage = 1500;
     public static int goldHeld = 250;
     public static final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int inventoryCap = 5;
@@ -44,13 +45,13 @@ public class TheKnight {
             }
 
         validateMove(tmpHorizontal,tmpVertical);
-        if (getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy == null) Map.printPosition();
+        if (getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy() == null) Map.printPosition();
 
     }
 
     private static void validateMove (int tmpX, int tmpY) {
         try {
-            if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).isLocked) {
+            if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).getLockedStatus()) {
                 System.out.println("You get a sinking feeling, like acid in your stomach!");
                 System.out.println("Perhaps you should not be here yet? Explore elsewhere!");
                 TheKnight.position.horizontal = tmpX;
@@ -63,6 +64,17 @@ public class TheKnight {
         }
 
 
+    }
+
+    public static void resolveAttack(int damageValue, Monster enemyPresent) {
+        damageValue += TheKnight.damage;
+        double rollForCrit = Math.random();
+        if (rollForCrit > 0.95) {
+            System.out.println("Critical hit!");
+            damageValue *= 2;
+        }
+        enemyPresent.health -= damageValue;
+        System.out.println("You hit " + enemyPresent.name + " for " + damageValue + " points of damage!");
     }
 
 
@@ -111,5 +123,35 @@ public class TheKnight {
         }
         System.out.println("No such item was found");
     }
+
+    public static void printCommandListExploration () {
+        System.out.println("""
+                Following commands are available to you at the moment:
+                => MOVE - Allows you to change rooms, expects direction in terms of: NORTH, WEST,EAST,SOUTH after prompt
+                => LOOK AROUND - Prints you the description of your surroundings.
+                => STATUS - Prints stats of the Knight, including gold carried.
+                => INTERACT - Allows you to trigger special effects in certain rooms, use this to talk to people.
+                => LOOT - Allows you to grab certain items from the world.
+                => SHOW INVENTORY - Prints the contents of your inventory.
+                => USE ITEM - allows you to use items held in your inventory
+                => SPELL LIST - prints available spells and basic info about them
+                => CAST - Allows you the cast spells, expects name of the spell as input after prompt
+                => QUIT GAME - ends the game, take not that this wont work in combat.
+                """);
+    }
+
+    public static void printCommandListCombat() {
+        System.out.println(""" 
+                Following commands are available to you at the moment:
+                => ATTACK - Deal direct damage to your enemy, if you are lucky, you can deal critical damage for twice the usual amount.
+                => SHOW INVENTORY - Prints the contents of your inventory. (this won't cost you your turn)
+                => USE ITEM - allows you to use items held in your inventory
+                => SPELL LIST - prints available spells and basic info about them (this won't cost you your turn)
+                => CAST - Allows you the cast spells, expects name of the spell as input after prompt
+                
+                Running away from monsters is not an option, good luck!
+                """);
+    }
+
 
 }

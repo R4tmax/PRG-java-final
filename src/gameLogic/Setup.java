@@ -1,5 +1,7 @@
 package gameLogic;
 
+import auxiliary.Auxiliary;
+import gameworld.Interactions;
 import gameworld.Map;
 
 import java.util.Date;
@@ -9,7 +11,7 @@ public class Setup extends Thread {
     private static final Date todayIs = new Date();
     public static void initializeData () {
         Map.fillMap();
-        Map.printMap();
+        Interactions.initializeDialogues();
     }
 
 
@@ -22,7 +24,7 @@ public class Setup extends Thread {
                             """);
         System.out.println("Today is " + todayIs + "\n");
 
-        slowDownText();
+        Auxiliary.slowDownText();
 
         System.out.println("""
                             You are Knight of prestigious monster slaying order,
@@ -32,24 +34,18 @@ public class Setup extends Thread {
                             Slay the scourge, reclaim the area!
                             """);
 
-        slowDownText();
+        Auxiliary.slowDownText();
 
         System.out.println("""
                             Use the HELP command if you get stuck!
                             Good luck!
                             """);
 
-        slowDownText();
+        Auxiliary.slowDownText();
 
         Map.printPosition();
     }
 
-    private static void slowDownText () {
-        try {
-            sleep(1500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
 }

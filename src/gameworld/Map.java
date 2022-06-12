@@ -9,7 +9,7 @@ import items.MoneyLoot;
 import knight.TheKnight;
 
 public class Map {
-    public static Room [][] gameMap = new Room[5][5];
+    private static final Room [][] gameMap = new Room[5][5];
 
     public static Room getCurrentPosition(int x, int y) {
         return gameMap[x][y];
@@ -48,7 +48,7 @@ public class Map {
                 Heading either west or east. To your dismay, what seems to be bloodstains and human remains become
                 frequent, as you scout the eastern path. Be wary.
                 """, false , null, null, RoomType.RECON);
-        Map.gameMap[0][2] = new Room("MONSTER NEST", "END OF THE LINE", true , null, new TheMatriarch("Matriarch",1500, 15), RoomType.HOSTILE);
+        Map.gameMap[0][2] = new Room("MONSTER NEST", "END OF THE LINE", true , null, new TheMatriarch("Matriarch",1500, 13), RoomType.HOSTILE);
         Map.gameMap[0][3] = new Room("Chasm", """
                 Whether by chance or fate, you manage to stay on track in spite of hard terrain.
                 You can see the sun behind you, illuminating narrow path leading back to the forests.
@@ -71,7 +71,8 @@ public class Map {
                 and castles on the horizon. Places where you come from and for which you fight.
                 Your reminiscing is interrupted however, by a vague sense of darkness coming form the south.
                 Up north, hills rise up, while eastern view is blocked by the trees.
-                """, false , null, null, RoomType.RECON);
+                Blue herbs are growing here.
+                """, false , new Consumable("Blue Herb",25,ConsumableType.MANA_FILL), null, RoomType.RECON);
         Map.gameMap[1][1] = new Room("Deep forest", """
                 As you make your way through the forrest, you feel cold and isolated.
                 Even in the middle of the noon, the sun doesn't reach you here.
@@ -130,7 +131,8 @@ public class Map {
                 Something tells you, that the corpse won't be here come next week.
                 You cannot see anything from where you are standing, aside from the fact,
                 that swamp is impassable due east, you need to head somewhere else.
-                """, false , null, new TheHag("Hag", 625,7,750), RoomType.HOSTILE);
+                As you look around one last time, some herbs catch your attention.
+                """, false , new Consumable("Magical herbs",50,ConsumableType.MANA_FILL), new TheHag("Hag", 625,7,750), RoomType.HOSTILE);
 
         //fourth row
         Map.gameMap[3][0] = new Room("Dirt road", """
@@ -145,7 +147,7 @@ public class Map {
                 The area opens up to the west, towards the roads.
                 in the north-eastern direction forests and open meadows lie.
                 Someone has forgotten bread on one of the stone fences, interesting.
-                """, false , new Consumable("Mouldy bread",-5,ConsumableType.HEALTH_FILL), null, RoomType.RECON);
+                """, false , new Consumable("Nourishing bread",50,ConsumableType.HEALTH_FILL), null, RoomType.RECON);
         Map.gameMap[3][2] = new Room("Meadow", """
                 With village to your south, you stand in the middle of tranquil meadow.
                 Village fields are to your left, while the path seems to wind down to the other side, east.

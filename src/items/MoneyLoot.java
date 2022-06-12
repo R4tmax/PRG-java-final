@@ -21,6 +21,6 @@ public class MoneyLoot extends Item implements PickupHandling{
         TheKnight.goldHeld += this.effectiveValue;
         this.pickUpMessage();
         System.out.println("You now have: " + TheKnight.goldHeld + " gold pieces!");
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomLoot = null;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomLoot(null);
     }
 }

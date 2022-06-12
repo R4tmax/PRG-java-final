@@ -1,5 +1,6 @@
 package gameLogic;
 
+import auxiliary.Auxiliary;
 import enemies.*;
 import gameworld.Map;
 import knight.*;
@@ -14,7 +15,7 @@ public class Combat extends Thread {
         int damageValue;
         String command;
         Random damageRoll = new Random();
-        Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy;
+        Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy();
         enemyPresent.initialMessage();
 
        while (true) {
@@ -23,24 +24,27 @@ public class Combat extends Thread {
 
            if (turnCounter % 2 == 0) {
                TheKnight.printKnightStatusCombat();
-               System.out.println("How do you want to proceed?");
+               System.out.println(">");
                 command = input.nextLine();
                 command = command.replaceAll("\\s","");
                 switch (command.toLowerCase()) {
-                    case "attack" -> {
-                        damageValue += TheKnight.damage;
-                        double rollForCrit = Math.random();
-                        if (rollForCrit > 0.95) {
-                            System.out.println("Critical hit!");
-                            damageValue *= 2;
-                        }
-                        enemyPresent.health -= damageValue;
-                        System.out.println("You hit " + enemyPresent.name + " for " + damageValue + " points of damage!");
+                    case "help" -> {
+                        TheKnight.printCommandListCombat();
+                        turnCounter--;
+                    }
+                    case "attack" -> TheKnight.resolveAttack(damageValue,enemyPresent);
+                    case "showinventory" -> {
+                        TheKnight.printInventoryContent();
+                        turnCounter--;
                     }
                     case "useitem" -> TheKnight.useItem(input);
+                    case "spelllist" -> {
+                        Spells.printSpelllist();
+                        turnCounter--;
+                    }
                     case "cast" -> Spells.castSpells(input);
                     default -> {
-                        System.out.println("Wrong command!");
+                        System.out.println("Wrong command! Use HELP command if you need to.");
                         turnCounter--;
                     }
                 }
@@ -54,11 +58,7 @@ public class Combat extends Thread {
 
            turnCounter++;
 
-           try {
-               sleep(1250);
-           } catch (InterruptedException e) {
-               throw new RuntimeException(e);
-           }
+           Auxiliary.slowDownCombat();
 
        }
 
@@ -77,7 +77,7 @@ public class Combat extends Thread {
             System.out.println("Combat won! Good job!");
             System.out.println("Looted gold: " + enemyPresent.goldDrop);
             TheKnight.goldHeld += enemyPresent.goldDrop;
-            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy = null;
+            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomEnemy(null);
             return false;
         } else if (TheKnight.currentHealth <= 0) {
             TheKnight.isDead = true;

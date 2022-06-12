@@ -22,6 +22,19 @@ public class Spells {
 
     }
 
+    public static void printSpelllist () {
+        System.out.println("""
+                You have following spells at your disposal:
+                => HEAL - heals you for a moderate amount for a modest mana cost
+                => SMITE - both heals you and damages your opponent, slightly more expensive than the heal
+                => LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely
+                => PRAYER OF STRENGTH - Improves your damage for the rest of the game, but it is rather mana taxing
+                => PRAYER OF RESOLVE - Improves your armor for the rest of the game, but it is rather mana taxing.
+                
+                Take heed, knight, some spells should not be attempted during combat!
+                """);
+    }
+
     public static void heal() {
         int manaCost = 15;
         if (manaCost > TheKnight.currentMana) {
@@ -51,7 +64,7 @@ public class Spells {
         TheKnight.currentHealth += 50;
         TheKnight.preventOverheal();
 
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy.health -= 100;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().health -= 100;
         System.out.println("You feel slightly better and your enemy took a hit!");
     }
 
@@ -69,7 +82,7 @@ public class Spells {
 
 
         TheKnight.currentMana -= manaCost;
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy.health -= 500;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().health -= 500;
         System.out.println("Your enemy took a massive hit!");
     }
 

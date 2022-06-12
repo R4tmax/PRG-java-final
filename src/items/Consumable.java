@@ -32,9 +32,9 @@ public class Consumable extends Item implements PickupHandling{
     @Override
     public void pickUpEffect() {
         if (TheKnight.inventory.size() < TheKnight.inventoryCap){
-            TheKnight.inventory.add((Consumable) Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomLoot);
+            TheKnight.inventory.add((Consumable) Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomLoot());
             this.pickUpMessage();
-            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomLoot = null;
+            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomLoot(null);
         } else {
             System.out.println("Inventory full!");
         }

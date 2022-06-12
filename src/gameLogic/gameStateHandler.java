@@ -11,21 +11,22 @@ public class gameStateHandler {
     }
 
     protected static void updateRoomDescriptor () {
-        //TODO: change descriptions of hostile rooms
+        //TODO: change descriptions of warnings near the boss rooms
     }
 
     protected static boolean unlockFinalBoss() {
-        if (Map.getCurrentPosition(2,0).roomEnemy == null && Map.getCurrentPosition(2,4).roomEnemy == null)
+        if (Map.getCurrentPosition(2,0).getRoomEnemy() == null && Map.getCurrentPosition(2,4).getRoomEnemy() == null)
         {
-            Map.getCurrentPosition(0,2).isLocked = false;
-            System.out.println("Cítíš, že něco je v tvém okolí jinak, dříve nepřístupné oblasti jsou nyní na dosah");
+            Map.getCurrentPosition(0,2).setLocked(false);
+            System.out.println("You feel like something has changed in the world.");
+            System.out.println("Previously unreachable areas are now available.");
             return true;
         }
         return false;
     }
 
     protected static boolean gameWon(){
-        return Map.getCurrentPosition(0, 2).roomEnemy == null;
+        return Map.getCurrentPosition(0, 2).getRoomEnemy() == null;
     }
 
 

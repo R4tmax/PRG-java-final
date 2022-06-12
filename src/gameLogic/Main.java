@@ -17,12 +17,10 @@ public class Main {
         //TODO: Improve encapsulation in general
         //TODO: Docs
         //TODO: Tests
-        //TODO: Validation of damage values (should not go negative)
         //TODO: Text colouring
         //TODO: Loggers on errors.
         Setup.initializeData();
         Setup.printPrologue();
-        Interactions.initializeDialogues();
         Scanner input = new Scanner(System.in);
         boolean endgameReady = false;
 
@@ -30,7 +28,7 @@ public class Main {
         while (true) {
 
 
-            if ((Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).roomEnemy != null)){
+            if ((Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).getRoomEnemy() != null)){
                 Combat.encounter(input);
             }
 
@@ -56,12 +54,14 @@ public class Main {
 
             try {
                 switch (command.toLowerCase()) {
+                    case "help" -> TheKnight.printCommandListExploration();
                     case "move" -> TheKnight.moveKnight(input);
-                    case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).name + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).description);
+                    case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getName() + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getDescription());
                     case "status" -> TheKnight.printKnightStatusExploration();
                     case "loot" -> Item.attemptPickup();
                     case "showinventory" -> TheKnight.printInventoryContent();
                     case "useitem" -> TheKnight.useItem(input);
+                    case "spelllist" -> Spells.printSpelllist();
                     case "cast" -> Spells.castSpells(input);
                     case "interact" -> Interactions.attemptInteraction(input);
                     case "quitgame" -> {

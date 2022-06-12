@@ -42,7 +42,8 @@ public class Interactions {
             case TALKABLE -> getInfo();
             case REST_AREA -> restAtInn(input);
             case TRADABLE -> trade(input);
-            default -> System.out.println("Something is wrong!!");
+            case HOSTILE -> System.out.println("Shivers run down your spine. Some unnatural darkness still looms here.");
+            default -> System.out.println("Roomtype.error!");
         }
     }
 
