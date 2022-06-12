@@ -3,7 +3,7 @@ package knight;
 
 import gameworld.Map;
 import items.Consumable;
-import items.Item;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,9 +22,6 @@ public class TheKnight {
     public static final int inventoryCap = 5;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
     public static boolean isDead = false;
-    public static KnightCoordinates getPosition() {
-        return position;
-    }
 
 
     public static void moveKnight (Scanner input) {
@@ -47,19 +44,20 @@ public class TheKnight {
             }
 
         validateMove(tmpHorizontal,tmpVertical);
-        Map.printPosition();
+        if (getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomEnemy == null) Map.printPosition();
 
     }
 
     private static void validateMove (int tmpX, int tmpY) {
         try {
             if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).isLocked) {
-                System.out.println("Máš pocit, že bys tady ještě neměl být, zkus prozkoumat jinou část oblasti!");
+                System.out.println("You get a sinking feeling, like acid in your stomach!");
+                System.out.println("Perhaps you should not be here yet? Explore elsewhere!");
                 TheKnight.position.horizontal = tmpX;
                 TheKnight.position.vertical = tmpY;
             }
         } catch (Exception e) {
-            System.out.println("Opouštíš herní plochu, rozhlédni se a zkus jiný směr!");
+            System.out.println("You are leaving the game area, try a different direction!");
             TheKnight.position.horizontal = tmpX;
             TheKnight.position.vertical = tmpY;
         }
@@ -77,24 +75,24 @@ public class TheKnight {
     }
 
     public static void printKnightStatusExploration () {
-        System.out.println("Momentální zdraví:" + TheKnight.currentHealth);
-        if (TheKnight.currentMana > 0) System.out.println("Momentální currentMana: " + TheKnight.currentMana);
-        else System.out.println("Nemáš žádnou manu!");
-        System.out.println("Tvůj base damage je:" + TheKnight.damage);
-        System.out.println("Tvůj armor je:" + TheKnight.armor);
-        System.out.println("Neseš " + TheKnight.goldHeld + " zlaťáků.");
+        System.out.println("Current health:" + TheKnight.currentHealth);
+        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
+        else System.out.println("You are out of mana!");
+        System.out.println("Your current damage is:" + TheKnight.damage);
+        System.out.println("Your armor value is:" + TheKnight.armor);
+        System.out.println("You have " + TheKnight.goldHeld + " gold coins at your disposal.");
     }
     public static void printKnightStatusCombat () {
-        System.out.println("Momentální zdraví:" + TheKnight.currentHealth);
-        if (TheKnight.currentMana > 0) System.out.println("Momentální currentMana: " + TheKnight.currentMana);
-        else System.out.println("Nemáš žádnou manu!");
-        System.out.println("Tvůj base damage je:" + TheKnight.damage);
-        System.out.println("Tvůj armor je:" + TheKnight.armor);
+        System.out.println("Current health:" + TheKnight.currentHealth);
+        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
+        else System.out.println("You are out of mana!");
+        System.out.println("Your current damage is:" + TheKnight.damage);
+        System.out.println("Your armor value is:" + TheKnight.armor);
     }
 
     public static void printInventoryContent () {
         for (Consumable item : inventory ) {
-            System.out.println(item);
+            System.out.println(item.getName());
         }
     }
 

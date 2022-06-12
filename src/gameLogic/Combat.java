@@ -29,12 +29,12 @@ public class Combat extends Thread {
                     case "attack" -> {
                         damageValue += TheKnight.damage;
                         double rollForCrit = Math.random();
-                        if (rollForCrit > 0.98) {
+                        if (rollForCrit > 0.95) {
                             System.out.println("Critical hit!");
                             damageValue *= 2;
                         }
                         enemyPresent.health -= damageValue;
-                        System.out.println("Zasáhl jsi " + enemyPresent.name + " za " + damageValue + " bodů poškození!");
+                        System.out.println("You hit " + enemyPresent.name + " for " + damageValue + " points of damage!");
                     }
                     case "useitem" -> TheKnight.useItem(input);
                     case "cast" -> Spells.castSpells(input);
@@ -54,7 +54,7 @@ public class Combat extends Thread {
            turnCounter++;
 
            try {
-               sleep(1500);
+               sleep(1250);
            } catch (InterruptedException e) {
                throw new RuntimeException(e);
            }

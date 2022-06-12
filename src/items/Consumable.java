@@ -26,7 +26,7 @@ public class Consumable extends Item implements PickupHandling{
 
     @Override
     public void pickUpMessage() {
-        System.out.println("You picked up " + this.name);
+        System.out.println("You picked up " + this.name +".");
     }
 
     @Override

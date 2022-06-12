@@ -10,20 +10,21 @@ public class TheHag extends Monster implements HostileActions{
     @Override
     public void initialMessage() {
         System.out.println("""
-                            Jak zkoumáš zákoutí bažiny, náhle cítíš podivnou auru ve vzduchu,
-                            a všechny tvé chlupy na těle se zježí.
-                            Náhle spatříš shrbenou a ohyzdnou figuru vycházet z vysoké trávy a roští.
-                            Tvůj instinkt ti říká, že jestli potřebuješ použít svá kouzla, měl bys tak učinit hned.
+                            The feeling you had around here. The dense air and shivers?
+                            It is so much stronger here, you almost feel dizzy.
+                            Suddenly, you notice movement in nearby reeds.
+                            A small, but very much so disgusting womanlike creature stands in front of you.
+                            Your instinct tells you, if you feel the need to cast a spell, you should do it NOW.
                             """);
     }
 
-    //TODO: Attacks damage currentMana pools as well
+
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
         TheKnight.currentHealth -= damageValue;
         TheKnight.currentMana -= damageValue;
-        System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
-        System.out.println("Stejné poškození obdržel i tvůj currentMana pool!");
+        System.out.println("You were hit by " + this.name + " for " + damageValue + " points of damage!");
+        System.out.println("The same damage was taken by your mana pool!");
     }
 }

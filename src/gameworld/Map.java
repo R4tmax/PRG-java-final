@@ -1,6 +1,5 @@
 package gameworld;
 
-import enemies.Monster;
 import enemies.TheBrute;
 import enemies.TheHag;
 import enemies.TheMatriarch;
@@ -48,18 +47,73 @@ public class Map {
         Map.gameMap[1][4] = new Room("Podmáčený les", "placeholder", false , null, null, RoomType.RECON);
 
         //third row
-        Map.gameMap[2][0] = new Room("PODIVNÁ MÝTINA", "placeholder", false , null, new TheBrute("Brute",1000,5,1000), RoomType.HOSTILE);
-        Map.gameMap[2][1] = new Room("Křovinatá pláň", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][2] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][3] = new Room("Okraj mokřadu", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[2][4] = new Room("MOČÁL", "placeholder", false , null, new TheHag("Hag", 600,5,750), RoomType.HOSTILE);
+        Map.gameMap[2][0] = new Room("THE STRANGE CLEARING", """
+                Phew, the monstrosity is dead.
+                You have little idea what that thing was. But you are glad you made it out.
+                The creature, even dead, looks menacing and out of this world. It still could be, for all you know.
+                The Kings Road is safe now, for the time being.
+                You get your bearings. Road is due South, and forests lie north-east.
+                You notice that the way west would take you over a cliff, the drop is too high to brave.
+                """, false , null, new TheBrute("Brute",1000,5,1000), RoomType.HOSTILE);
+        Map.gameMap[2][1] = new Room("Bush-filled plain", """
+                It feels, like someone lives nearby. You notice that a lot of the bushes and small trees
+                in the area have damaged bark and branches, as if something regularly smashed through here.
+                As you head west, the damage gets more and more pronounced. You could head elsewhere, you know.
+                But what is this?! Are those? Gems?
+                """, false , new MoneyLoot("Sack full of Gems",500), null, RoomType.RECON);
+        Map.gameMap[2][2] = new Room("Edge of the forrest", """
+                You are on the edge of the local forests.
+                It feels like you are being watched by something from the north.
+                But you can't quite make out anything else, than rows of trees from that direction.
+                Your view to both the east and the west is obscured by trees, but the terrain looks passable.
+                After some wandering around you find a dead caravan guard, desperately clutching a blue vial.
+                """, false , new Consumable("Blessed Mana Potion",50,ConsumableType.MANA_FILL), null, RoomType.RECON);
+        Map.gameMap[2][3] = new Room("Edge of the marsh", """
+                You made your way to what seems to be some sort of a bog.
+                Short colorful flowers are scattered everywhere, but soil gives way under your weight.
+                After some deliberation you find a path through all of it. But you are not exactly comfortable.
+                You don't see much, but it is obvious that danger is ahead due east.
+                Fortunately the bog gives way in all other directions.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[2][4] = new Room("THE DEEP SWAMP", """
+                Creature which you decided to dub 'The Hag' lies dead at your feet.
+                It almost looks like the ground began to reclaim the body.
+                Something tells you, that the corpse won't be here come next week.
+                You cannot see anything from where you are standing, aside from the fact,
+                that swamp is impassable due east, you need to head somewhere else.
+                """, false , null, new TheHag("Hag", 600,5,750), RoomType.HOSTILE);
 
         //fourth row
-        Map.gameMap[3][0] = new Room("Polní cesta", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[3][1] = new Room("Pšeničné pole", "placeholder", false , new Consumable("Mouldy bread",-5,ConsumableType.HEALTH_FILL), null, RoomType.RECON);
-        Map.gameMap[3][2] = new Room("Louka", "placeholder", false , new MoneyLoot("Rare herb",50), null, RoomType.RECON);
-        Map.gameMap[3][3] = new Room("Nížina", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[3][4] = new Room("Říční meandr", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[3][0] = new Room("Dirt road", """
+                Same as along the Kings Road, which lies to your south now.
+                The area seems... haunted somehow. As if you intruded on someones property.
+                As you think about going north, you feel the need to hold the hilt of your sword.
+                You can still make out village buildings to the east.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[3][1] = new Room("Wheat field", """
+                The village wheat fields are tended by only a handful of locals.
+                Most of the people you see are guards.
+                The area opens up to the west, towards the roads.
+                in the north-eastern direction forests and open meadows lie.
+                Someone has forgotten bread on one of the stone fences, interesting.
+                """, false , new Consumable("Mouldy bread",-5,ConsumableType.HEALTH_FILL), null, RoomType.RECON);
+        Map.gameMap[3][2] = new Room("Meadow", """
+                With village to your south, you stand in the middle of tranquil meadow.
+                Village fields are to your left, while the path seems to wind down to the other side, east.
+                In front of you, pine forests begin rising up, as to greet you in this land.
+                You recognize some of the local flora as valuable, often used in preparing spirits, perhaps worth foraging?
+                """, false , new MoneyLoot("Rare herb",50), null, RoomType.RECON);
+        Map.gameMap[3][3] = new Room("Lowland", """
+                After not seeing anything interesting for a while, you realise
+                that you have entered some sort of plateau or a valley, perhaps
+                that is considerably lower than the rest of the area. You don't see much.
+                But all directions seem accessible enough.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[3][4] = new Room("River meander", """
+                As southern fields disappear under the horizon, you start walking up north, with the river to your right.
+                Suddenly, the air starts getting heavy. Hairs on your neck start standing up in attention.
+                Something is wrong up north, perhaps heading west first would be prudent?
+                """, false , null, null, RoomType.RECON);
 
         //fifth row
         Map.gameMap[4][0] = new Room("The Kings Road", """
@@ -79,7 +133,7 @@ public class Map {
                 Courtyard of the local village.
                 It is distant, isolated, but surprisingly robust and nice looking.
                 Close proximity to the Kings Road guarantee good business.
-                But fear is in the eyes of the locals. 
+                But fear is in the eyes of the locals.
                 Scout of your expedition is standing near the the tents and the crates marked with
                 insignias of the King.
                 In front of you, to the north, mountain range stands erect.

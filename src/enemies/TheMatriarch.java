@@ -10,22 +10,22 @@ public class TheMatriarch extends Monster implements HostileActions{
     @Override
     public void initialMessage() {
         System.out.println("""
-                            Jak zkoumáš cesty pahorkatiny, nemůžeš se zbavit pocitu,
-                            že tě někdo... něco, pozoruje.
-                            Jak postupuješ hlouběji, vzduch jakoby houstnul a ztěžknul.
-                            Tvé tělo střídá návaly chladu a horka, a okolo je nepřirozené ticho.
-                            Když v tom.... BRAŇ SE!
+                            As you scout the rocky hills at the base of the mountain range.
+                            You cannot shake the feeling of being watched.
+                            After a while, you start noticing dead bodies. Torn apart and left to rot.
+                            You catch a sudden movement through the visor of your helmet...
+                            DEFEND YOURSELF!!!
                             """);
     }
 
-    //TODO:Attacks twice in a row
+
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
         TheKnight.currentHealth -= damageValue;
-        System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
+        System.out.println("Your were hit by " + this.name + " for " + damageValue + " points of damage!");
         TheKnight.currentHealth -= damageValue;
-        System.out.println("Byl jsi zasažen podruhé od " + this.name + " za " + damageValue + " bodů poškození!");
-        System.out.println("Matriarcha je rychlý protivník!!!");
+        System.out.println("You were hit AGAIN by " + this.name + " for " + damageValue + " points of damage!");
+        System.out.println("The Matriarch is a fierce enemy!!!");
     }
 }

@@ -17,6 +17,11 @@ public class Main {
         //TODO: Improve encapsulation in general
         //TODO: Docs
         //TODO: Tests
+        //TODO: Validation of damage values (should not go negative)
+        //TODO: Text colouring
+        //TODO: reminder, crits?
+        //TODO: better string handling
+        //TODO: Loggers on errors.
         Setup.initializeData();
         Setup.printPrologue();
         Interactions.initializeDialogues();

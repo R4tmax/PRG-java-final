@@ -13,17 +13,19 @@ public class TheBrute extends Monster implements HostileActions{
     @Override
     public void initialMessage() {
         System.out.println("""
-                            Stojí proti tobě obrovské stvoření, minimálně tři metry vysoké!
-                            Není jiného zbytí, tohle bude maraton!
+                            Hideous and terrible creature stands in front of you, it is at least 3 meters tall!
+                            It has terrible musculature, and it's skin is so white, you can almost see the sinew and
+                            blood vessels underneath.
+                            You get the feeling like you are in for a long haul.
                             """);
     }
 
-    //TODO: Attacks once, but with higher damage than others
+
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
         damageValue *= 1.25;
         TheKnight.currentHealth -= damageValue;
-        System.out.println("Byl jsi zasažen od " + this.name + " za " + damageValue + " bodů poškození!");
+        System.out.println("You were hit by " + this.name + " for " + damageValue + " Points of damage!");
     }
 }
