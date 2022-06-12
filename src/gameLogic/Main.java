@@ -19,8 +19,6 @@ public class Main {
         //TODO: Tests
         //TODO: Validation of damage values (should not go negative)
         //TODO: Text colouring
-        //TODO: reminder, crits?
-        //TODO: better string handling
         //TODO: Loggers on errors.
         Setup.initializeData();
         Setup.printPrologue();
@@ -55,7 +53,6 @@ public class Main {
             System.out.println(">");
             String command = input.nextLine();
             command = command.replaceAll("\\s","");
-            //TODO: extend whitespace strip functionality
 
             try {
                 switch (command.toLowerCase()) {

@@ -17,7 +17,7 @@ public class TheKnight {
     public static int currentMana = 50;
     public static int armor = 2;
     public static int damage = 15;
-    public static int goldHeld = 100;
+    public static int goldHeld = 250;
     public static final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int inventoryCap = 5;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
@@ -30,7 +30,7 @@ public class TheKnight {
         int tmpVertical = TheKnight.position.vertical;
         System.out.println("In which compass direction do you want to go?");
         String direction = input.nextLine();
-
+        direction = direction.replaceAll("\\s","");
             try {
                 switch (direction.toLowerCase()) {
                     case "north" -> TheKnight.position.horizontal -= 1;
@@ -75,19 +75,19 @@ public class TheKnight {
     }
 
     public static void printKnightStatusExploration () {
-        System.out.println("Current health:" + TheKnight.currentHealth);
+        System.out.println("Current health: " + TheKnight.currentHealth);
         if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
         else System.out.println("You are out of mana!");
-        System.out.println("Your current damage is:" + TheKnight.damage);
-        System.out.println("Your armor value is:" + TheKnight.armor);
+        System.out.println("Your current damage is: " + TheKnight.damage);
+        System.out.println("Your armor value is: " + TheKnight.armor);
         System.out.println("You have " + TheKnight.goldHeld + " gold coins at your disposal.");
     }
     public static void printKnightStatusCombat () {
-        System.out.println("Current health:" + TheKnight.currentHealth);
+        System.out.println("Current health: " + TheKnight.currentHealth);
         if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
         else System.out.println("You are out of mana!");
-        System.out.println("Your current damage is:" + TheKnight.damage);
-        System.out.println("Your armor value is:" + TheKnight.armor);
+        System.out.println("Your current damage is: " + TheKnight.damage);
+        System.out.println("Your armor value is: " + TheKnight.armor);
     }
 
     public static void printInventoryContent () {
@@ -99,9 +99,11 @@ public class TheKnight {
     public static void useItem(Scanner input) {
         System.out.println("Please enter the name of item you want to use.");
         String toUse = input.nextLine();
+        toUse = toUse.toLowerCase();
+        toUse = toUse.replaceAll("\\s","");
 
         for (Consumable consumable : inventory) {
-            if (toUse.equals(consumable.getName())) {
+            if (toUse.equals(consumable.getName().toLowerCase().replaceAll("\\s",""))) {
                 consumable.executeConsumableEffect(consumable.getItemType(), consumable.getEffectiveValue());
                 inventory.remove(consumable);
                 return;

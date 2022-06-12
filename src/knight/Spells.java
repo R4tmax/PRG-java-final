@@ -10,12 +10,13 @@ public class Spells {
     public static void castSpells(Scanner input) {
         System.out.println("Which spell do you want to cast?");
         String spellName = input.nextLine();
-        switch (spellName) {
+        spellName = spellName.replaceAll("\\s","");
+        switch (spellName.toLowerCase()) {
             case "heal" -> Spells.heal();
             case "smite" -> Spells.holySmite();
-            case "lightning strike" -> Spells.lightningSpear();
-            case "prayer of strength" -> Spells.prayerOfStrength();
-            case "prayer of resolve" -> Spells.prayerOfResolve();
+            case "lightningstrike" -> Spells.lightningSpear();
+            case "prayerofstrength" -> Spells.prayerOfStrength();
+            case "prayerofresolve" -> Spells.prayerOfResolve();
             default -> System.out.println("You don't know such a spell!");
         }
 

@@ -52,6 +52,7 @@ public class Interactions {
         System.out.println("It will cost you 300 gold");
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
+        command = command.replaceAll("\\s","");
 
         switch (command) {
             case "y" -> {
@@ -84,19 +85,28 @@ public class Interactions {
     }
 
     public static void trade (Scanner input) {
+
         System.out.println("Locals do not have much, but they can help you.");
         System.out.println("There is an armorsmith who might help you retrofit and pad your armor.");
         System.out.println("There is also a huntsman who can help you sharpen your arms.");
         System.out.println("For a price... of course.");
-        System.out.println("You could always leave and come back later.");
-        System.out.println("Who do you want to trade with?");
-        String command = input.nextLine().toLowerCase();
 
-        switch (command) {
-            case "armorsmith" -> armorUpgrade(input);
-            case "huntsman" -> weaponUpgrade(input);
-            case "leave" -> System.out.println("They will be here, if you change your mind");
-            default -> System.out.println("Unknown command!");
+        while (true) {
+            System.out.println("Who do you want to trade with?");
+            System.out.println("You could always LEAVE and come back later.");
+
+            String command = input.nextLine().toLowerCase();
+            command = command.replaceAll("\\s", "");
+
+            switch (command) {
+                case "armorsmith" -> armorUpgrade(input);
+                case "huntsman" -> weaponUpgrade(input);
+                case "leave" ->
+                {   System.out.println("They will be here, if you change your mind");
+                    return;
+                }
+                default -> System.out.println("Unknown command!");
+            }
         }
     }
 
@@ -107,6 +117,7 @@ public class Interactions {
         System.out.println("It will cost you " + price + " gold. Each upgrade will be more expensive");
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
+        command = command.replaceAll("\\s", "");
 
         switch (command) {
             case "y" -> {
@@ -130,6 +141,7 @@ public class Interactions {
         System.out.println("It will cost you " + price + " gold. Each upgrade will be more expensive");
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
+        command = command.replaceAll("\\s", "");
 
         switch (command) {
             case "y" -> {

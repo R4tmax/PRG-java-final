@@ -22,6 +22,7 @@ public class TheMatriarch extends Monster implements HostileActions{
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
+        damageValue = accountForArmor(damageValue);
         TheKnight.currentHealth -= damageValue;
         System.out.println("Your were hit by " + this.name + " for " + damageValue + " points of damage!");
         TheKnight.currentHealth -= damageValue;

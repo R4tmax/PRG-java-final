@@ -24,6 +24,7 @@ public class TheBrute extends Monster implements HostileActions{
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
+        damageValue = accountForArmor(damageValue);
         damageValue *= 1.25;
         TheKnight.currentHealth -= damageValue;
         System.out.println("You were hit by " + this.name + " for " + damageValue + " Points of damage!");

@@ -22,5 +22,9 @@ public abstract class Monster implements HostileActions{
         this.goldDrop = goldDrop;
     }
 
+    protected int accountForArmor (int damageValue) {
+        return Math.max(damageValue, 1);
+    }
+
 
 }

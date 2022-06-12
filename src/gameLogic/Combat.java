@@ -25,7 +25,8 @@ public class Combat extends Thread {
                TheKnight.printKnightStatusCombat();
                System.out.println("How do you want to proceed?");
                 command = input.nextLine();
-                switch (command) {
+                command = command.replaceAll("\\s","");
+                switch (command.toLowerCase()) {
                     case "attack" -> {
                         damageValue += TheKnight.damage;
                         double rollForCrit = Math.random();

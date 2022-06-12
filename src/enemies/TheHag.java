@@ -22,6 +22,7 @@ public class TheHag extends Monster implements HostileActions{
     @Override
     public void attackPattern(int damageValue) {
         damageValue += this.damage - TheKnight.armor;
+        damageValue = accountForArmor(damageValue);
         TheKnight.currentHealth -= damageValue;
         TheKnight.currentMana -= damageValue;
         System.out.println("You were hit by " + this.name + " for " + damageValue + " points of damage!");

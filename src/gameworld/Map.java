@@ -33,18 +33,67 @@ public class Map {
     public static void fillMap () {
 
         //First row - Northernmost
-        Map.gameMap[0][0] = new Room("Severozápadní pahorkatina", "placeholder", false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
-        Map.gameMap[0][1] = new Room("Jeskynní úbočí", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[0][2] = new Room("HNÍZDO MONSTER", "Odsud pochází všechna monstra, co zužují kraj! Poraž matariarchu a skonči s tím!", true , null, new TheMatriarch("Matriarch",800, 8), RoomType.HOSTILE);
-        Map.gameMap[0][3] = new Room("Roklinka", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[0][4] = new Room("Severovýchodní pahorkatina", "placeholder", false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
+        Map.gameMap[0][0] = new Room("Northwestern rocky hills", """
+                You arrive at the small hill overseeing the forest underneath, due south.
+                You can't see much around, but a beautiful sight of your kingdom can be seen due west.
+                Continuing north or west is not possible from here, and probably ill advised, given the task at hand.
+                But, a path can be followed to the east.
+                You notice some abandoned military supplies nearby, realization dawning upon you, you are close to the
+                heart of the beast.
+                """, false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
+        Map.gameMap[0][1] = new Room("Foot of the mountain", """
+                Up north, enormous rock blocks your way. A black monolith of basalt and marble.
+                However you can see, despite the rocky terrain, the trees due south.
+                There is also, at least it looks that way, a small path running alongside the foot of the mountain.
+                Heading either west or east. To your dismay, what seems to be bloodstains and human remains become
+                frequent, as you scout the eastern path. Be wary.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[0][2] = new Room("MONSTER NEST", "END OF THE LINE", true , null, new TheMatriarch("Matriarch",1500, 15), RoomType.HOSTILE);
+        Map.gameMap[0][3] = new Room("Chasm", """
+                Whether by chance or fate, you manage to stay on track in spite of hard terrain.
+                You can see the sun behind you, illuminating narrow path leading back to the forests.
+                It is possible to head either west or east. But the entry to the western path is littered
+                by skeletons of various animals, picked clean.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[0][4] = new Room("Northeastern rocky hills", """
+                You arrive at the small hill overseeing the forest underneath, due south.
+                You can't see much around, but you hear a rushing river due east.
+                Continuing north or east is not possible from here, and probably ill advised, given the task at hand.
+                But, a path can be followed to the west.
+                You notice some abandoned military supplies nearby, realization dawning upon you, you are close to the
+                heart of the beast.
+                """, false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
 
         //Second row
-        Map.gameMap[1][0] = new Room("Okraj lesa", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[1][1] = new Room("Hluboký les", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[1][2] = new Room("Hluboký les", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[1][3] = new Room("Hluboký les", "placeholder", false , null, null, RoomType.RECON);
-        Map.gameMap[1][4] = new Room("Podmáčený les", "placeholder", false , null, null, RoomType.RECON);
+        Map.gameMap[1][0] = new Room("Edge of the forest", """
+                You walk amongst the thinly space trees and admire the view to the west.
+                You cannot quite get there, as a narrow cliff block your way. But you see distant cities
+                and castles on the horizon. Places where you come from and for which you fight.
+                Your reminiscing is interrupted however, by a vague sense of darkness coming form the south.
+                Up north, hills rise up, while eastern view is blocked by the trees.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[1][1] = new Room("Deep forest", """
+                As you make your way through the forrest, you feel cold and isolated.
+                Even in the middle of the noon, the sun doesn't reach you here.
+                However, you notice that the trees get more spaced out due north and west.
+                You get a sudden impression like it might be worth looking around.
+                """, false , new MoneyLoot("Rare Herbs", 200), null, RoomType.RECON);
+        Map.gameMap[1][2] = new Room("Deep forest", """
+                As you make your way through the forrest, you feel cold and isolated.
+                Even in the middle of the noon, the sun doesn't reach you here.
+                You are not quite sure where exactly your are.
+                """, false , null, null, RoomType.RECON);
+        Map.gameMap[1][3] = new Room("Deep forest", """
+                You have lost track of where exactly you are.
+                You can make vague outline of the sun between the trees. Allowing you to keep a sense of direction.
+                After stumbling around a bit, you notice a barrow, no one has been here for quite a while.
+                """, false , new MoneyLoot("Silver Trinkets", 350), null, RoomType.RECON);
+        Map.gameMap[1][4] = new Room("Boggy forrest", """
+                This place looks almost surreal. You see a huge marsh opening to east and south.
+                While mountain range looms to the north. Western direction is saddled by trees and bushes.
+                Flies and mosquitoes constantly annoy you. You can feel some sort of darkness creeping out of the
+                south. Be careful.
+                """, false , null, null, RoomType.RECON);
 
         //third row
         Map.gameMap[2][0] = new Room("THE STRANGE CLEARING", """
@@ -54,7 +103,7 @@ public class Map {
                 The Kings Road is safe now, for the time being.
                 You get your bearings. Road is due South, and forests lie north-east.
                 You notice that the way west would take you over a cliff, the drop is too high to brave.
-                """, false , null, new TheBrute("Brute",1000,5,1000), RoomType.HOSTILE);
+                """, false , null, new TheBrute("Brute",1000,8,1000), RoomType.HOSTILE);
         Map.gameMap[2][1] = new Room("Bush-filled plain", """
                 It feels, like someone lives nearby. You notice that a lot of the bushes and small trees
                 in the area have damaged bark and branches, as if something regularly smashed through here.
@@ -81,7 +130,7 @@ public class Map {
                 Something tells you, that the corpse won't be here come next week.
                 You cannot see anything from where you are standing, aside from the fact,
                 that swamp is impassable due east, you need to head somewhere else.
-                """, false , null, new TheHag("Hag", 600,5,750), RoomType.HOSTILE);
+                """, false , null, new TheHag("Hag", 625,7,750), RoomType.HOSTILE);
 
         //fourth row
         Map.gameMap[3][0] = new Room("Dirt road", """
