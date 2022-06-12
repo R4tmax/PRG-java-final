@@ -1,6 +1,7 @@
 package knight;
 
 
+import auxiliary.ConsoleColors;
 import enemies.Monster;
 import gameworld.Map;
 import items.Consumable;
@@ -70,11 +71,11 @@ public class TheKnight {
         damageValue += TheKnight.damage;
         double rollForCrit = Math.random();
         if (rollForCrit > 0.95) {
-            System.out.println("Critical hit!");
+            System.out.println(ConsoleColors.RED + "Critical hit!" + ConsoleColors.RESET);
             damageValue *= 2;
         }
-        enemyPresent.setHealth(-damageValue);
-        System.out.println("You hit " + enemyPresent.getName() + " for " + damageValue + " points of damage!");
+        enemyPresent.setHealth(enemyPresent.getHealth()-damageValue);
+        System.out.println("You hit " + enemyPresent.getName() + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET +" points of damage!");
     }
 
 
@@ -87,19 +88,19 @@ public class TheKnight {
     }
 
     public static void printKnightStatusExploration () {
-        System.out.println("Current health: " + TheKnight.currentHealth);
-        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
-        else System.out.println("You are out of mana!");
-        System.out.println("Your current damage is: " + TheKnight.damage);
-        System.out.println("Your armor value is: " + TheKnight.armor);
-        System.out.println("You have " + TheKnight.goldHeld + " gold coins at your disposal.");
+        System.out.println("Current health: " + ConsoleColors.RED + TheKnight.currentHealth + ConsoleColors.RESET);
+        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + ConsoleColors.CYAN + TheKnight.currentMana + ConsoleColors.RESET);
+        else System.out.println(ConsoleColors.CYAN + "You are out of mana!" + ConsoleColors.RESET);
+        System.out.println("Your current damage is: " + ConsoleColors.PURPLE + TheKnight.damage + ConsoleColors.RESET);
+        System.out.println("Your armor value is: " + ConsoleColors.GREEN +TheKnight.armor + ConsoleColors.RESET);
+        System.out.println("You have " + ConsoleColors.YELLOW + TheKnight.goldHeld + ConsoleColors.RESET + " gold coins at your disposal.");
     }
     public static void printKnightStatusCombat () {
-        System.out.println("Current health: " + TheKnight.currentHealth);
-        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + TheKnight.currentMana);
-        else System.out.println("You are out of mana!");
-        System.out.println("Your current damage is: " + TheKnight.damage);
-        System.out.println("Your armor value is: " + TheKnight.armor);
+        System.out.println("Current health: " + ConsoleColors.RED + TheKnight.currentHealth + ConsoleColors.RESET);
+        if (TheKnight.currentMana > 0) System.out.println("Current mana: " + ConsoleColors.CYAN + TheKnight.currentMana + ConsoleColors.RESET);
+        else System.out.println(ConsoleColors.CYAN + "You are out of mana!" + ConsoleColors.RESET);
+        System.out.println("Your current damage is: " + ConsoleColors.PURPLE + TheKnight.damage + ConsoleColors.RESET);
+        System.out.println("Your armor value is: " + ConsoleColors.GREEN +TheKnight.armor + ConsoleColors.RESET);
     }
 
     public static void printInventoryContent () {

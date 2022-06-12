@@ -52,6 +52,7 @@ public class Combat extends Thread {
 
            } else {
                 enemyPresent.attackPattern(damageValue);
+               System.out.println();
            }
 
            if (!validateValues(enemyPresent)) break;
@@ -78,6 +79,7 @@ public class Combat extends Thread {
             System.out.println("Looted gold: " + enemyPresent.getGoldDrop());
             TheKnight.goldHeld += enemyPresent.getGoldDrop();
             Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomEnemy(null);
+            gameStateHandler.updateRoomDescriptor();
             return false;
         } else if (TheKnight.currentHealth <= 0) {
             TheKnight.isDead = true;

@@ -1,5 +1,6 @@
 package gameworld;
 
+import auxiliary.ConsoleColors;
 import knight.TheKnight;
 
 import java.util.ArrayList;
@@ -14,24 +15,38 @@ public class Interactions {
     public static void initializeDialogues() {
         scoutInfo.add("Hail, Knight of the King! *He hits his chest-plate with his right arm*");
         scoutInfo.add("""
-                      We are in the southernmost part of the area.
-                      All of the monsters should be up north.
-                      """);
+                       We are in the southernmost part of the area.
+                       All of the monsters should be up north.
+                       """);
+        scoutInfo.add("""
+                        Monsters will be fast, you better be ready to fight to the end, once you find them.
+                        (You cannot escape combat, once it begins.)
+                        """);
         scoutInfo.add("""
                         Monster attacks disrupted a lot of trade to the west.
                         You might find useful items in that direction.
                         """);
         scoutInfo.add("""
-                If you are uncertain, head east first.
-                Something feels wrong with that area, but
-                no attacks were reported there.
-                """);
+                        Whatever was there, was big.
+                        It had to take out well guarded convoys.
+                        Be sure to not engage, whatever it is, until you gathered some strength!
+                        """);
         scoutInfo.add("""
-        Be sure the familiarize yourself with your spell list.
-        You don't want to make a mistake in the heat of the moment.""");
-        scoutInfo.add("Monsters will be fast, you better be ready to fight to the end, once you find them.");
-        scoutInfo.add("You could always just avoid combat and survey the area first, you might find resources to salvage.");
-        scoutInfo.add("One last thing. Ecclesiastic chaplains prepared this blessed concoction for your, good luck!");
+                        If you are uncertain, head east first.
+                        Something feels wrong with that area, but
+                        no attacks were reported there.
+                        """);
+        scoutInfo.add("""
+                        Be sure the familiarize yourself with your spell list.
+                        You don't want to make a mistake in the heat of the moment.
+                        If you cast the wrong spell at the wrong time, the tables might turn
+                        very dramatically!
+                        """);
+        scoutInfo.add("""
+                        You could always just avoid combat and survey the area first, you might find resources to salvage.
+                        There are some merchants due east, which might help you with that.
+                        """);
+        scoutInfo.add("One last thing. Ecclesiastic chaplains prepared this blessed concoction for your quest, good luck!");
     }
 
     public static void attemptInteraction (Scanner input) {
@@ -50,7 +65,7 @@ public class Interactions {
     public static void restAtInn (Scanner input) {
         int restingPrice = 300;
         System.out.println("Do you want to rest and regain strength?");
-        System.out.println("It will cost you 300 gold");
+        System.out.println("It will cost you " +ConsoleColors.YELLOW + "300 gold" + ConsoleColors.RESET);
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
         command = command.replaceAll("\\s","");
@@ -88,8 +103,8 @@ public class Interactions {
     public static void trade (Scanner input) {
 
         System.out.println("Locals do not have much, but they can help you.");
-        System.out.println("There is an armorsmith who might help you retrofit and pad your armor.");
-        System.out.println("There is also a huntsman who can help you sharpen your arms.");
+        System.out.println("There is an armorsmith who might help you retrofit and pad your"+ ConsoleColors.GREEN + " armor." + ConsoleColors.RESET);
+        System.out.println("There is also a huntsman who can help you sharpen your" + ConsoleColors.PURPLE + " arms." + ConsoleColors.RESET);
         System.out.println("For a price... of course.");
 
         while (true) {
@@ -115,7 +130,7 @@ public class Interactions {
         int defaultPrice = 125;
         int price = defaultPrice * iteratorArmorsmith;
         System.out.println("Do you want to pay for armor upgrades?");
-        System.out.println("It will cost you " + price + " gold. Each upgrade will be more expensive");
+        System.out.println("It will cost you " + ConsoleColors.YELLOW + price + ConsoleColors.RESET + " gold. Each upgrade will be more expensive");
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
         command = command.replaceAll("\\s", "");
@@ -139,7 +154,7 @@ public class Interactions {
         int defaultPrice = 125;
         int price = defaultPrice * iteratorWeaponsmith;
         System.out.println("Do you want to pay for weapon upgrades?");
-        System.out.println("It will cost you " + price + " gold. Each upgrade will be more expensive");
+        System.out.println("It will cost you " + ConsoleColors.YELLOW + price + ConsoleColors.RESET +" gold. Each upgrade will be more expensive");
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
         command = command.replaceAll("\\s", "");

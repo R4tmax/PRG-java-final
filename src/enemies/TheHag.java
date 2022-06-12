@@ -1,5 +1,6 @@
 package enemies;
 
+import auxiliary.ConsoleColors;
 import knight.TheKnight;
 
 public class TheHag extends Monster implements HostileActions{
@@ -25,7 +26,7 @@ public class TheHag extends Monster implements HostileActions{
         damageValue = accountForArmor(damageValue);
         TheKnight.currentHealth -= damageValue;
         TheKnight.currentMana -= damageValue;
-        System.out.println("You were hit by " + this.name + " for " + damageValue + " points of damage!");
-        System.out.println("The same damage was taken by your mana pool!");
+        System.out.println("You were hit by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " points of damage!");
+        System.out.println(ConsoleColors.CYAN + "The same damage was taken by your mana pool!" + ConsoleColors.RESET);
     }
 }

@@ -1,5 +1,6 @@
 package enemies;
 
+import auxiliary.ConsoleColors;
 import knight.TheKnight;
 
 public class TheMatriarch extends Monster implements HostileActions{
@@ -24,9 +25,9 @@ public class TheMatriarch extends Monster implements HostileActions{
         damageValue += this.damage - TheKnight.armor;
         damageValue = accountForArmor(damageValue);
         TheKnight.currentHealth -= damageValue;
-        System.out.println("Your were hit by " + this.name + " for " + damageValue + " points of damage!");
+        System.out.println("Your were hit by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " points of damage!");
         TheKnight.currentHealth -= damageValue;
-        System.out.println("You were hit AGAIN by " + this.name + " for " + damageValue + " points of damage!");
+        System.out.println("You were hit AGAIN by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " points of damage!");
         System.out.println("The Matriarch is a fierce enemy!!!");
     }
 }

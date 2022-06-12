@@ -1,5 +1,6 @@
 package gameworld;
 
+import auxiliary.ConsoleColors;
 import enemies.TheBrute;
 import enemies.TheHag;
 import enemies.TheMatriarch;
@@ -17,8 +18,8 @@ public class Map {
 
 
     public static void printPosition () {
-        System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).name);
-        System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).description);
+        System.out.println(ConsoleColors.SIMPLE_UNDERLINE + ConsoleColors.SIMPLE_BOLD +  Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).name);
+        System.out.println(ConsoleColors.RESET + Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).description);
     }
 
     public static void printMap () {
@@ -47,7 +48,8 @@ public class Map {
                 There is also, at least it looks that way, a small path running alongside the foot of the mountain.
                 Heading either west or east. To your dismay, what seems to be bloodstains and human remains become
                 frequent, as you scout the eastern path. Be wary.
-                """, false , null, null, RoomType.RECON);
+                Somehow, Blue Herbs are growing the barren earth here.
+                """, false , new Consumable("Blue herb",25,ConsumableType.MANA_FILL), null, RoomType.RECON);
         Map.gameMap[0][2] = new Room("MONSTER NEST", "END OF THE LINE", true , null, new TheMatriarch("Matriarch",1500, 13), RoomType.HOSTILE);
         Map.gameMap[0][3] = new Room("Chasm", """
                 Whether by chance or fate, you manage to stay on track in spite of hard terrain.

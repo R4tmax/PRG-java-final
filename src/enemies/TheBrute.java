@@ -1,5 +1,6 @@
 package enemies;
 
+import auxiliary.ConsoleColors;
 import knight.TheKnight;
 
 public class TheBrute extends Monster implements HostileActions{
@@ -27,6 +28,6 @@ public class TheBrute extends Monster implements HostileActions{
         damageValue = accountForArmor(damageValue);
         damageValue *= 1.25;
         TheKnight.currentHealth -= damageValue;
-        System.out.println("You were hit by " + this.name + " for " + damageValue + " Points of damage!");
+        System.out.println("You were hit by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " Points of damage!");
     }
 }

@@ -12,9 +12,10 @@ public class Spells {
         String spellName = input.nextLine();
         spellName = spellName.replaceAll("\\s","");
         switch (spellName.toLowerCase()) {
+            case "lightningtouch" -> Spells.lightningTouch();
             case "heal" -> Spells.heal();
             case "smite" -> Spells.holySmite();
-            case "lightningstrike" -> Spells.lightningSpear();
+            case "greaterlightningstrike" -> Spells.lightningSpear();
             case "prayerofstrength" -> Spells.prayerOfStrength();
             case "prayerofresolve" -> Spells.prayerOfResolve();
             default -> System.out.println("You don't know such a spell!");
@@ -22,17 +23,38 @@ public class Spells {
 
     }
 
+
+
     public static void printSpelllist () {
         System.out.println("""
                 You have following spells at your disposal:
+                => LIGHTNING TOUCH - Deals somewhat minor damage, but is very cheap to cast.
                 => HEAL - heals you for a moderate amount for a modest mana cost
                 => SMITE - both heals you and damages your opponent, slightly more expensive than the heal
-                => LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely
-                => PRAYER OF STRENGTH - Improves your damage for the rest of the game, but it is rather mana taxing
-                => PRAYER OF RESOLVE - Improves your armor for the rest of the game, but it is rather mana taxing.
+                => GREATER LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely!!
+                => PRAYER OF STRENGTH - Improves your damage for the rest of the game, but it is rather mana taxing. Requires concentration!
+                => PRAYER OF RESOLVE - Improves your armor for the rest of the game, but it is rather mana taxing. Requires concentration!
                 
                 Take heed, knight, some spells should not be attempted during combat!
                 """);
+    }
+
+    private static void lightningTouch() {
+        int manaCost = 5;
+        if (manaCost > TheKnight.currentMana) {
+            System.out.println("Not enough mana to cast!");
+            return;
+        }
+
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
+            System.out.println("No target!");
+            return;
+        }
+
+
+        TheKnight.currentMana -= manaCost;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-100);
+        System.out.println("Your enemy took a nice hit!");
     }
 
     public static void heal() {
@@ -64,7 +86,7 @@ public class Spells {
         TheKnight.currentHealth += 50;
         TheKnight.preventOverheal();
 
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-100);
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-200);
         System.out.println("You feel slightly better and your enemy took a hit!");
     }
 
@@ -82,7 +104,7 @@ public class Spells {
 
 
         TheKnight.currentMana -= manaCost;
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-500);
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-600);
         System.out.println("Your enemy took a massive hit!");
     }
 
