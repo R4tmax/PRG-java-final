@@ -55,7 +55,7 @@ public class Spells {
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomBehavior != RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
             System.out.println("No target!");
             return;
         }
@@ -64,7 +64,7 @@ public class Spells {
         TheKnight.currentHealth += 50;
         TheKnight.preventOverheal();
 
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().health -= 100;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-100);
         System.out.println("You feel slightly better and your enemy took a hit!");
     }
 
@@ -75,14 +75,14 @@ public class Spells {
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomBehavior != RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
             System.out.println("No target!");
             return;
         }
 
 
         TheKnight.currentMana -= manaCost;
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().health -= 500;
+        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().setHealth(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy().getHealth()-500);
         System.out.println("Your enemy took a massive hit!");
     }
 
@@ -93,7 +93,7 @@ public class Spells {
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomBehavior == RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() == RoomType.HOSTILE){
             System.out.println("Concentration broken!");
             TheKnight.currentMana -= manaCost;
             System.out.println("Cast failed!");
@@ -112,7 +112,7 @@ public class Spells {
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomBehavior == RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() == RoomType.HOSTILE){
             System.out.println("Concentration broken!");
             TheKnight.currentMana -= manaCost;
             System.out.println("Cast failed!");

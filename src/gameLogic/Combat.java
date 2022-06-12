@@ -72,11 +72,11 @@ public class Combat extends Thread {
             TheKnight.currentMana = 0;
         }
 
-        if (enemyPresent.health <= 0) {
-            enemyPresent.isDead = true;
+        if (enemyPresent.getHealth() <= 0) {
+            enemyPresent.setDead(true);
             System.out.println("Combat won! Good job!");
-            System.out.println("Looted gold: " + enemyPresent.goldDrop);
-            TheKnight.goldHeld += enemyPresent.goldDrop;
+            System.out.println("Looted gold: " + enemyPresent.getGoldDrop());
+            TheKnight.goldHeld += enemyPresent.getGoldDrop();
             Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomEnemy(null);
             return false;
         } else if (TheKnight.currentHealth <= 0) {

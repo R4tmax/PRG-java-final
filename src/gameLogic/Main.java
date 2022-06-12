@@ -14,7 +14,6 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        //TODO: Improve encapsulation in general
         //TODO: Docs
         //TODO: Tests
         //TODO: Text colouring

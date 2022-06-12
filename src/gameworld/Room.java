@@ -8,8 +8,8 @@ public class Room {
     protected String description;
     protected boolean isLocked;
     protected Item roomLoot;
-    public Monster roomEnemy;
-    public RoomType roomBehavior;
+    protected Monster roomEnemy;
+    protected RoomType roomBehavior;
 
     public String getName() {
         return name;
@@ -41,6 +41,10 @@ public class Room {
 
     public void setRoomEnemy(Monster roomEnemy) {
         this.roomEnemy = roomEnemy;
+    }
+
+    public RoomType getRoomBehavior() {
+        return roomBehavior;
     }
 
     public Room(String name, String description, boolean isLocked, Item roomLoot, Monster roomEnemy, RoomType roomBehavior) {

@@ -17,7 +17,7 @@ public class TheKnight {
     public static final int maxMana = 50;
     public static int currentMana = 50;
     public static int armor = 2;
-    public static int damage = 1500;
+    public static int damage = 15;
     public static int goldHeld = 250;
     public static final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int inventoryCap = 5;
@@ -73,8 +73,8 @@ public class TheKnight {
             System.out.println("Critical hit!");
             damageValue *= 2;
         }
-        enemyPresent.health -= damageValue;
-        System.out.println("You hit " + enemyPresent.name + " for " + damageValue + " points of damage!");
+        enemyPresent.setHealth(-damageValue);
+        System.out.println("You hit " + enemyPresent.getName() + " for " + damageValue + " points of damage!");
     }
 
 

@@ -1,13 +1,34 @@
 package enemies;
 
 public abstract class Monster implements HostileActions{
-    public String name;
-    public int health;
-    public int damage;
+    protected String name;
+    protected int health;
+    protected int damage;
 
-    public boolean isDead = false;
+    protected boolean isDead = false;
 
-    public int goldDrop;
+    protected int goldDrop;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public int getGoldDrop() {
+        return goldDrop;
+    }
+
 
     public Monster(String name, int health, int damage) {
         this.name = name;
