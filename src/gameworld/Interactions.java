@@ -75,8 +75,8 @@ public class Interactions {
                 if (TheKnight.goldHeld < restingPrice) {
                     System.out.println("You do not hav enough gold!");
                 } else {
-                    TheKnight.currentHealth = TheKnight.maxHealth;
-                    TheKnight.currentMana = TheKnight.maxMana;
+                    TheKnight.currentHealth = TheKnight.MAX_HEALTH;
+                    TheKnight.currentMana = TheKnight.MAX_MANA;
                     TheKnight.damage += 1;
                     System.out.println("You feel well rested and ready to fight!");
                     System.out.println("Your HP and MP have been replenished, and you are slightly stronger!");

@@ -12,20 +12,54 @@ import java.util.Scanner;
 
 import static gameworld.Map.getCurrentPosition;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactored on 12.06.2022.
+ *
+ * <p>
+ *     The one of the key classes of the game.
+ *     Represents the main character and is implemented
+ *     with usage of public static modifiers
+ *
+ *     As such, main character is able to freely interact
+ *     with all of the components of the game
+ *
+ *     Knight interactions are usually facilitated through
+ *     the room getter in the Map class. See moveKnight for more info
+ *     on knight movements.
+ *
+ *     Knight holds most of the Main Character (directly)
+ *     related actions, with notable exception of Spells class.
+ * </p>
+ *
+ * @see KnightCoordinates
+ * @see Map
+ * @see items.Item
+ */
 public class TheKnight {
-    public static final int maxHealth = 200;
+    public static final int MAX_HEALTH = 200;
     public static int currentHealth = 200;
-    public static final int maxMana = 50;
+    public static final int MAX_MANA = 50;
     public static int currentMana = 50;
     public static int armor = 2;
     public static int damage = 15;
     public static int goldHeld = 250;
     public static final ArrayList<Consumable> inventory = new ArrayList<>();
-    public static final int inventoryCap = 5;
+    public static final int INVENTORY_CAP = 5;
     public static KnightCoordinates position = new KnightCoordinates(4,2);
     public static boolean isDead = false;
 
 
+    /**
+     * Accepts the user input as per given parameters
+     * and changes the numerical coordinates assigned to the knight.
+     * Temporary copies are made BEFORE the change.
+     * And are subsequently checked via try-catch block
+     * for outOfBoundsException.
+     * See more in validateMove method.
+     * @param input Passed Scanner object from the Main class
+     * @see TheKnight#validateMove(int, int)
+     */
     public static void moveKnight (Scanner input) {
 
         int tmpHorizontal = TheKnight.position.horizontal;
@@ -50,6 +84,18 @@ public class TheKnight {
 
     }
 
+    /**
+     * Auxiliary function for the moveKnight method.
+     * Try-catch block encapsulates if, which checks for
+     * isLocked property of Room class and outOfBoundsExceptions
+     * If either option is detected, KnightCoordinates are reset
+     * to temporary saved values. Thus preventing
+     * breaking the game by leaving the game area.
+     *
+     * @throws ArrayIndexOutOfBoundsException upon attempting to get non-existent coordinate pair.
+     * @param tmpX Temporary horizontal coordinate.
+     * @param tmpY Temporary vertical coordinate.
+     */
     private static void validateMove (int tmpX, int tmpY) {
         try {
             if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).getLockedStatus()) {
@@ -80,11 +126,11 @@ public class TheKnight {
 
 
     public static void preventOverheal () {
-        if (TheKnight.currentHealth > TheKnight.maxHealth) TheKnight.currentHealth = TheKnight.maxHealth;
+        if (TheKnight.currentHealth > TheKnight.MAX_HEALTH) TheKnight.currentHealth = TheKnight.MAX_HEALTH;
     }
 
     public static void preventOvercast() {
-        if (TheKnight.currentMana > TheKnight.maxMana) TheKnight.currentMana = TheKnight.maxMana;
+        if (TheKnight.currentMana > TheKnight.MAX_MANA) TheKnight.currentMana = TheKnight.MAX_MANA;
     }
 
     public static void printKnightStatusExploration () {

@@ -3,6 +3,17 @@ package gameLogic;
 import gameworld.Map;
 import knight.TheKnight;
 
+/**
+ *
+ * This class is responsible for maintaining
+ * Top level game states up to date.
+ * See respective methods for more information.
+ *
+ *   @author Martin Kadlec
+ *   @version Last refactored on 12.06.2022
+ *
+ * @see Main
+ */
 public class gameStateHandler {
 
     protected static boolean validateKnightState() {

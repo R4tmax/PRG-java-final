@@ -10,7 +10,21 @@ import java.util.Scanner;
 
 /**
  * @author Martin Kadlec
- * @version 0.0.1 , Project started 16.5. 2022
+ * @version Project started 16.5. 2022, last refactored on 12.6.2022
+ *
+ * Main function operates as primary programme executor.
+ * It uses Scanner object to process stdin and parses it into switch cases.
+ * Said Scanner object is passed if further nesting is required for user input.
+ * Elementary regex and String operations are used to sanitize the input.
+ * Before the switch loop is reached, Setup class methods are invoked to prepare initial data.
+ * By design, the class operates with other members of the gameLogic package and TheKnight class,
+ * which represents the main character.
+ * More data will is available at the relevant methods or the manual.
+ *
+ * @see Setup
+ * @see TheKnight
+ * @see gameStateHandler
+ * @see Combat
  */
 public class Main {
     public static void main(String[] args) {
