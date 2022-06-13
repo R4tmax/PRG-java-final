@@ -1,6 +1,7 @@
 package gameLogic;
 
 import auxiliary.Auxiliary;
+import auxiliary.ConsoleColors;
 import enemies.*;
 import gameworld.Map;
 import knight.*;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 /**
  * @author Martin Kadlec
- * @version Last refactored on 12.06.2022
+ * @version Last refactored on 13.06.2022
  * <p>
  *     Combat class facilitates the interactions caused
  *     by Main Character and some enemy monster occupying the same
@@ -48,7 +49,7 @@ public class Combat extends Thread {
         int damageValue;
         String command;
         Random damageRoll = new Random();
-        Monster enemyPresent = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy();
+        Monster enemyPresent = Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getRoomEnemy();
         enemyPresent.initialMessage();
 
        while (true) {
@@ -82,7 +83,6 @@ public class Combat extends Thread {
                     }
                 }
 
-
            } else {
                 enemyPresent.attackPattern(damageValue);
                System.out.println();
@@ -95,8 +95,6 @@ public class Combat extends Thread {
            Auxiliary.slowDownCombat();
 
        }
-
-
 
     }
 
@@ -117,20 +115,20 @@ public class Combat extends Thread {
      */
     public static boolean validateValues(Monster enemyPresent) {
 
-        if (TheKnight.currentMana <= 0) {
-            TheKnight.currentMana = 0;
+        if (TheKnight.getCurrentMana() <= 0) {
+            TheKnight.setCurrentMana(0);
         }
 
         if (enemyPresent.getHealth() <= 0) {
             enemyPresent.setDead(true);
             System.out.println("Combat won! Good job!");
-            System.out.println("Looted gold: " + enemyPresent.getGoldDrop());
-            TheKnight.goldHeld += enemyPresent.getGoldDrop();
-            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomEnemy(null);
+            System.out.println("Looted gold: " + ConsoleColors.YELLOW + enemyPresent.getGoldDrop() + ConsoleColors.RESET);
+            TheKnight.setGoldHeld(TheKnight.getGoldHeld() + enemyPresent.getGoldDrop());
+            Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).setRoomEnemy(null);
             gameStateHandler.updateRoomDescriptor();
             return false;
-        } else if (TheKnight.currentHealth <= 0) {
-            TheKnight.isDead = true;
+        } else if (TheKnight.getCurrentHealth() <= 0) {
+            TheKnight.setIsDead(true);
             System.out.println("Combat lost, better luck next time!");
             return false;
         }

@@ -1,5 +1,6 @@
 package items;
 
+import auxiliary.ConsoleColors;
 import gameworld.Map;
 import knight.TheKnight;
 
@@ -13,14 +14,14 @@ public class MoneyLoot extends Item implements PickupHandling{
     @Override
     public void pickUpMessage() {
         System.out.println("You found: " + this.name + ". This will make you a richer man.");
-        System.out.println("Value of the find is: " + this.effectiveValue + " gold pieces.");
+        System.out.println("Value of the find is: "+ ConsoleColors.YELLOW + this.effectiveValue +  ConsoleColors.RESET + " gold pieces.");
     }
 
     @Override
     public void pickUpEffect() {
-        TheKnight.goldHeld += this.effectiveValue;
+        TheKnight.setGoldHeld(TheKnight.getGoldHeld() + this.effectiveValue);
         this.pickUpMessage();
-        System.out.println("You now have: " + TheKnight.goldHeld + " gold pieces!");
-        Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomLoot(null);
+        System.out.println("You now have: " + ConsoleColors.YELLOW + TheKnight.getGoldHeld() + ConsoleColors.RESET +" gold pieces!");
+        Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).setRoomLoot(null);
     }
 }

@@ -1,8 +1,17 @@
 package knight;
 
 public class KnightCoordinates {
-    public int horizontal;
-    public int vertical;
+    protected int horizontal;
+    protected int vertical;
+
+    public int getHorizontal() {
+        return horizontal;
+    }
+
+    public int getVertical() {
+        return vertical;
+    }
+
 
     public KnightCoordinates(int horizontal, int vertical) {
         this.horizontal = horizontal;

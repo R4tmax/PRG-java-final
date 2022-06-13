@@ -22,11 +22,11 @@ public class TheMatriarch extends Monster implements HostileActions{
 
     @Override
     public void attackPattern(int damageValue) {
-        damageValue += this.damage - TheKnight.armor;
+        damageValue += this.damage - TheKnight.getArmor();
         damageValue = accountForArmor(damageValue);
-        TheKnight.currentHealth -= damageValue;
+        TheKnight.setCurrentHealth(TheKnight.getCurrentHealth()-damageValue);
         System.out.println("Your were hit by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " points of damage!");
-        TheKnight.currentHealth -= damageValue;
+        TheKnight.setCurrentHealth(TheKnight.getCurrentHealth()-damageValue);
         System.out.println("You were hit AGAIN by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " points of damage!");
         System.out.println("The Matriarch is a fierce enemy!!!");
     }

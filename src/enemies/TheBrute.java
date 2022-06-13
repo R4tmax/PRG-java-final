@@ -24,10 +24,10 @@ public class TheBrute extends Monster implements HostileActions{
 
     @Override
     public void attackPattern(int damageValue) {
-        damageValue += this.damage - TheKnight.armor;
+        damageValue += this.damage - TheKnight.getArmor();
         damageValue = accountForArmor(damageValue);
         damageValue *= 1.25;
-        TheKnight.currentHealth -= damageValue;
+        TheKnight.setCurrentHealth(TheKnight.getCurrentHealth()-damageValue);
         System.out.println("You were hit by " + this.name + " for " + ConsoleColors.RED + damageValue + ConsoleColors.RESET + " Points of damage!");
     }
 }

@@ -18,8 +18,8 @@ public class Map {
 
 
     public static void printPosition () {
-        System.out.println(ConsoleColors.SIMPLE_UNDERLINE + ConsoleColors.SIMPLE_BOLD +  Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).name);
-        System.out.println(ConsoleColors.RESET + Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).description);
+        System.out.println(ConsoleColors.SIMPLE_UNDERLINE + ConsoleColors.SIMPLE_BOLD +  Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(), TheKnight.getPosition().getVertical()).name);
+        System.out.println(ConsoleColors.RESET + Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(), TheKnight.getPosition().getVertical()).description);
     }
 
     public static void printMap () {
@@ -41,7 +41,7 @@ public class Map {
                 But, a path can be followed to the east.
                 You notice some abandoned military supplies nearby, realization dawning upon you, you are close to the
                 heart of the beast.
-                """, false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
+                """, false , new Consumable("Armorsmith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
         Map.gameMap[0][1] = new Room("Foot of the mountain", """
                 Up north, enormous rock blocks your way. A black monolith of basalt and marble.
                 However you can see, despite the rocky terrain, the trees due south.
@@ -64,7 +64,7 @@ public class Map {
                 But, a path can be followed to the west.
                 You notice some abandoned military supplies nearby, realization dawning upon you, you are close to the
                 heart of the beast.
-                """, false , new Consumable("Armor-smith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
+                """, false , new Consumable("Armorsmith tools",1,ConsumableType.ARMOR_BOOST), null, RoomType.RECON);
 
         //Second row
         Map.gameMap[1][0] = new Room("Edge of the forest", """

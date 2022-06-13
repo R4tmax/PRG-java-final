@@ -41,7 +41,7 @@ public class Main {
         while (true) {
 
 
-            if ((Map.getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).getRoomEnemy() != null)){
+            if ((Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(), TheKnight.getPosition().getVertical()).getRoomEnemy() != null)){
                 Combat.encounter(input);
             }
 
@@ -69,7 +69,7 @@ public class Main {
                 switch (command.toLowerCase()) {
                     case "help" -> TheKnight.printCommandListExploration();
                     case "move" -> TheKnight.moveKnight(input);
-                    case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getName() + "\n" +Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getDescription());
+                    case "lookaround" -> System.out.println(Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getName() + "\n" +Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getDescription());
                     case "status" -> TheKnight.printKnightStatusExploration();
                     case "loot" -> Item.attemptPickup();
                     case "showinventory" -> TheKnight.printInventoryContent();
@@ -81,7 +81,7 @@ public class Main {
                         System.out.println("Thanks for playing!");
                         return;
                     }
-                    case "testposition" -> System.out.println(Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical));
+                    case "testposition" -> System.out.println(Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()));
                     default -> System.out.println("Unknown command, use HELP command if you are lost.");
                 }
             }

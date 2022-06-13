@@ -18,7 +18,7 @@ public class gameStateHandler {
 
     protected static boolean validateKnightState() {
 
-        return !TheKnight.isDead;
+        return !TheKnight.getIsDead();
     }
 
     protected static void updateRoomDescriptor () {

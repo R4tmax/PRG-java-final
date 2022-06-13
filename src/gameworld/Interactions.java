@@ -50,7 +50,7 @@ public class Interactions {
     }
 
     public static void attemptInteraction (Scanner input) {
-        RoomType type = Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).roomBehavior;
+        RoomType type = Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).roomBehavior;
 
         switch (type) {
             case RECON -> System.out.println("Hmm, no one is around.");
@@ -65,22 +65,22 @@ public class Interactions {
     public static void restAtInn (Scanner input) {
         int restingPrice = 300;
         System.out.println("Do you want to rest and regain strength?");
-        System.out.println("It will cost you " +ConsoleColors.YELLOW + "300 gold" + ConsoleColors.RESET);
+        System.out.println("It will cost you " + ConsoleColors.YELLOW + "300" + ConsoleColors.RESET + " gold" );
         System.out.println("Y/N");
         String command = input.nextLine().toLowerCase();
         command = command.replaceAll("\\s","");
 
         switch (command) {
             case "y" -> {
-                if (TheKnight.goldHeld < restingPrice) {
+                if (TheKnight.getGoldHeld() < restingPrice) {
                     System.out.println("You do not hav enough gold!");
                 } else {
-                    TheKnight.currentHealth = TheKnight.MAX_HEALTH;
-                    TheKnight.currentMana = TheKnight.MAX_MANA;
-                    TheKnight.damage += 1;
+                    TheKnight.setCurrentHealth(TheKnight.MAX_HEALTH);
+                    TheKnight.setCurrentMana(TheKnight.MAX_MANA);
+                    TheKnight.setDamage(TheKnight.getDamage()+1);
                     System.out.println("You feel well rested and ready to fight!");
                     System.out.println("Your HP and MP have been replenished, and you are slightly stronger!");
-                    TheKnight.goldHeld -= restingPrice;
+                    TheKnight.setGoldHeld(TheKnight.getGoldHeld() - restingPrice);
                 }
             }
             case "n" -> System.out.println("Some other time then!");
@@ -103,8 +103,8 @@ public class Interactions {
     public static void trade (Scanner input) {
 
         System.out.println("Locals do not have much, but they can help you.");
-        System.out.println("There is an armorsmith who might help you retrofit and pad your"+ ConsoleColors.GREEN + " armor." + ConsoleColors.RESET);
-        System.out.println("There is also a huntsman who can help you sharpen your" + ConsoleColors.PURPLE + " arms." + ConsoleColors.RESET);
+        System.out.println("There is an " + ConsoleColors.SIMPLE_BOLD + ConsoleColors.SIMPLE_UNDERLINE + "armorsmith" + ConsoleColors.RESET +  " who might help you retrofit and pad your"+ ConsoleColors.GREEN + " armor." + ConsoleColors.RESET);
+        System.out.println("There is also a " +  ConsoleColors.SIMPLE_BOLD + ConsoleColors.SIMPLE_UNDERLINE + "huntsman" + ConsoleColors.RESET + " who can help you sharpen your" + ConsoleColors.PURPLE + " arms." + ConsoleColors.RESET);
         System.out.println("For a price... of course.");
 
         while (true) {
@@ -117,11 +117,12 @@ public class Interactions {
             switch (command) {
                 case "armorsmith" -> armorUpgrade(input);
                 case "huntsman" -> weaponUpgrade(input);
+                case "status" -> TheKnight.printKnightStatusExploration();
                 case "leave" ->
                 {   System.out.println("They will be here, if you change your mind");
                     return;
                 }
-                default -> System.out.println("Unknown command!");
+                default -> System.out.println("You can use commands ARMORSMITH, HUNTSMAN,STATUS or LEAVE.!\n During this interaction.");
             }
         }
     }
@@ -137,11 +138,11 @@ public class Interactions {
 
         switch (command) {
             case "y" -> {
-                if (TheKnight.goldHeld < price) {
+                if (TheKnight.getGoldHeld() < price) {
                     System.out.println("You do not hav enough gold!");
                 } else {
-                    TheKnight.armor += 2;
-                    TheKnight.goldHeld -= price;
+                    TheKnight.setArmor(TheKnight.getArmor()+2);
+                    TheKnight.setGoldHeld(TheKnight.getGoldHeld() - price);
                     iteratorArmorsmith++;
                 }
             }
@@ -161,11 +162,11 @@ public class Interactions {
 
         switch (command) {
             case "y" -> {
-                if (TheKnight.goldHeld < price) {
+                if (TheKnight.getGoldHeld() < price) {
                     System.out.println("You do not hav enough gold!");
                 } else {
-                    TheKnight.damage += 5;
-                    TheKnight.goldHeld -= price;
+                    TheKnight.setDamage(TheKnight.getDamage()+5);
+                    TheKnight.setGoldHeld(TheKnight.getGoldHeld() - price);
                     iteratorWeaponsmith++;
                 }
             }

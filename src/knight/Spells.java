@@ -57,7 +57,7 @@ public class Spells {
         System.out.println("Your enemy took a nice hit!");
     }
 
-    public static void heal() {
+    private static void heal() {
         int manaCost = 15;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -70,7 +70,7 @@ public class Spells {
         System.out.println("You feel better!");
     }
 
-    public static void holySmite() {
+    private static void holySmite() {
         int manaCost = 20;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -90,7 +90,7 @@ public class Spells {
         System.out.println("You feel slightly better and your enemy took a hit!");
     }
 
-    public static void lightningSpear () {
+    private static void lightningSpear () {
         int manaCost = 50;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -108,7 +108,7 @@ public class Spells {
         System.out.println("Your enemy took a massive hit!");
     }
 
-    public static void prayerOfResolve () {
+    private static void prayerOfResolve () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -127,7 +127,7 @@ public class Spells {
         System.out.println("You feel better suited to deal with the task at hand");
     }
 
-    public static void prayerOfStrength () {
+    private static void prayerOfStrength () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");

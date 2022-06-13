@@ -32,9 +32,9 @@ public class Consumable extends Item implements PickupHandling{
     @Override
     public void pickUpEffect() {
         if (TheKnight.inventory.size() < TheKnight.INVENTORY_CAP){
-            TheKnight.inventory.add((Consumable) Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomLoot());
+            TheKnight.inventory.add((Consumable) Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getRoomLoot());
             this.pickUpMessage();
-            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).setRoomLoot(null);
+            Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).setRoomLoot(null);
         } else {
             System.out.println("Inventory full!");
         }
@@ -43,15 +43,15 @@ public class Consumable extends Item implements PickupHandling{
     public void executeConsumableEffect(ConsumableType type, int value) {
         switch (type) {
             case HEALTH_FILL -> {
-                TheKnight.currentHealth += value;
+                TheKnight.setCurrentHealth(TheKnight.getCurrentHealth() + value);
                 TheKnight.preventOverheal();
             }
             case MANA_FILL -> {
-                TheKnight.currentMana += value;
+                TheKnight.setCurrentMana(TheKnight.getCurrentMana() + value);
                 TheKnight.preventOvercast();
             }
-            case DAMAGE_BOOST -> TheKnight.damage += value;
-            case ARMOR_BOOST -> TheKnight.armor += value;
+            case DAMAGE_BOOST -> TheKnight.setDamage(TheKnight.getDamage()+value);
+            case ARMOR_BOOST -> TheKnight.setArmor(TheKnight.getArmor()+value);
         }
 
     }

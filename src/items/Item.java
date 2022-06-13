@@ -21,10 +21,10 @@ public abstract class Item implements PickupHandling{
     }
 
     public static void attemptPickup () {
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomLoot() == null) {
+        if (Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getRoomLoot() == null) {
             System.out.println("There is nothing to pickup here!");
         }  else {
-            Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomLoot().pickUpEffect();
+            Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).getRoomLoot().pickUpEffect();
         }
     }
 

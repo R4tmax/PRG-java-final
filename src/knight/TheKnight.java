@@ -14,15 +14,15 @@ import static gameworld.Map.getCurrentPosition;
 
 /**
  * @author Martin Kadlec
- * @version Last refactored on 12.06.2022.
+ * @version Last refactored on 13.06.2022.
  *
  * <p>
  *     The one of the key classes of the game.
  *     Represents the main character and is implemented
- *     with usage of public static modifiers
+ *     with usage of static modifiers
  *
- *     As such, main character is able to freely interact
- *     with all of the components of the game
+ *     As such, TheKnight Class operates as self contained
+ *     instance of itself.
  *
  *     Knight interactions are usually facilitated through
  *     the room getter in the Map class. See moveKnight for more info
@@ -38,17 +38,72 @@ import static gameworld.Map.getCurrentPosition;
  */
 public class TheKnight {
     public static final int MAX_HEALTH = 200;
-    public static int currentHealth = 200;
+    protected static int currentHealth = 200;
     public static final int MAX_MANA = 50;
-    public static int currentMana = 50;
-    public static int armor = 2;
-    public static int damage = 15;
-    public static int goldHeld = 250;
+    protected static int currentMana = 50;
+    protected static int armor = 2;
+    protected static int damage = 15;
+    protected static int goldHeld = 250;
     public static final ArrayList<Consumable> inventory = new ArrayList<>();
     public static final int INVENTORY_CAP = 5;
-    public static KnightCoordinates position = new KnightCoordinates(4,2);
-    public static boolean isDead = false;
+    protected static KnightCoordinates position = new KnightCoordinates(4,2);
+    protected static boolean isDead = false;
 
+    public static int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public static void setCurrentHealth(int currentHealth) {
+        TheKnight.currentHealth = currentHealth;
+    }
+
+    public static int getCurrentMana() {
+        return currentMana;
+    }
+
+    public static void setCurrentMana(int currentMana) {
+        TheKnight.currentMana = currentMana;
+    }
+
+    public static int getArmor() {
+        return armor;
+    }
+
+    public static void setArmor(int armor) {
+        TheKnight.armor = armor;
+    }
+
+    public static int getDamage() {
+        return damage;
+    }
+
+    public static void setDamage(int damage) {
+        TheKnight.damage = damage;
+    }
+
+    public static int getGoldHeld() {
+        return goldHeld;
+    }
+
+    public static void setGoldHeld(int goldHeld) {
+        TheKnight.goldHeld = goldHeld;
+    }
+
+    public static KnightCoordinates getPosition() {
+        return position;
+    }
+
+    public static void setPosition(KnightCoordinates position) {
+        TheKnight.position = position;
+    }
+
+    public static boolean getIsDead() {
+        return isDead;
+    }
+
+    public static void setIsDead(boolean isDead) {
+        TheKnight.isDead = isDead;
+    }
 
     /**
      * Accepts the user input as per given parameters
