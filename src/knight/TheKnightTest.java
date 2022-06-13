@@ -5,15 +5,13 @@ import gameworld.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 import static gameworld.Map.getCurrentPosition;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class TheKnightTest {
-
     @BeforeEach
-     void prepareMapTest (){
+     void prepareMap (){
         Map.fillMap();
         TheKnight.getPosition().horizontal = 4;
         TheKnight.getPosition().vertical = 2;
@@ -22,7 +20,7 @@ class TheKnightTest {
 
     @Test
     void checkCorrectBaseSetting () {
-        assertAll(("Check if base stats are correctly set"),
+        assertAll(("Check if base stats are correctly set on game load up"),
             () -> assertEquals(200, TheKnight.getCurrentHealth()),
             () -> assertEquals(50,TheKnight.getCurrentMana()),
             () -> assertEquals(15,TheKnight.getDamage()),
@@ -97,16 +95,30 @@ class TheKnightTest {
     }
 
     @Test
+    void testOutOfBounds () {
+        assertEquals(4, TheKnight.getPosition().horizontal);
+        assertEquals(2,TheKnight.getPosition().vertical);
+
+        moveKnightTest('w');
+        moveKnightTest('w');
+        moveKnightTest('w');
+        moveKnightTest('w');
+
+        assertEquals(4, TheKnight.getPosition().horizontal);
+        assertEquals(0,TheKnight.getPosition().vertical);
+    }
+
+    @Test
     void testDamageProjection () {
+
         TheBrute targetDummy = new TheBrute("Target dummy",500,0,0);
         TheKnight.resolveAttack(0,targetDummy);
         assertTrue(targetDummy.getHealth() <= 485 && targetDummy.getHealth()>=470);
-        
+
     }
 
 
-
-    private void moveKnightTest(char x) {
+    protected static void moveKnightTest(char x) {
 
         int tmpX = TheKnight.getPosition().horizontal;
         int tmpY = TheKnight.getPosition().vertical;
@@ -123,7 +135,7 @@ class TheKnightTest {
     }
 
 
-    private void testValidator (int tmpX, int tmpY) {
+    private static void testValidator (int tmpX, int tmpY) {
         try {
             if (getCurrentPosition(TheKnight.position.horizontal, TheKnight.position.vertical).getLockedStatus()) {
                 TheKnight.position.horizontal = tmpX;

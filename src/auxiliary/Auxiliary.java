@@ -1,5 +1,7 @@
 package auxiliary;
 
+import knight.TheKnight;
+
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
@@ -46,5 +48,14 @@ public class Auxiliary {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    public static void sanitizeStats () {
+        TheKnight.setCurrentHealth(TheKnight.MAX_HEALTH);
+        TheKnight.setCurrentMana(TheKnight.MAX_MANA);
+        TheKnight.setArmor(2);
+        TheKnight.setDamage(15);
+        TheKnight.setGoldHeld(250);
     }
 }

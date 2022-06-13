@@ -115,7 +115,7 @@ public class Spells {
      * Take note that auxiliary functions are called to
      * prevent undesirable effects.
      */
-    private static void heal() {
+    protected static void heal() {
         int manaCost = 15;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -139,7 +139,7 @@ public class Spells {
      * @see Spells#lightningTouch()
      * @see Spells#heal()
      */
-    private static void holySmite() {
+    protected static void holySmite() {
         int manaCost = 25;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -164,7 +164,7 @@ public class Spells {
      *
      * @see Spells#lightningTouch()
      */
-    private static void lightningStrike () {
+    protected static void lightningStrike () {
         int manaCost = 50;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -189,7 +189,7 @@ public class Spells {
      * Take note that trying to cast this in
      * 'hostile' rooms will break cause miscast.
      */
-    private static void prayerOfResolve () {
+    protected static void prayerOfResolve () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
@@ -215,7 +215,7 @@ public class Spells {
      * Take note that trying to cast this in
      * 'hostile' rooms will break cause miscast.
      */
-    private static void prayerOfStrength () {
+    protected static void prayerOfStrength () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
