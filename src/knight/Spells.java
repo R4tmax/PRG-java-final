@@ -22,6 +22,8 @@ import java.util.Scanner;
  *
  *     Take note that the entire class is created using
  *     static modifiers.
+ *     Known issue - class for some reason incorrectly propagates
+ *                   within IntelliJ, preventing ease of testing and documentation.
  * </p>
  *
  * @see TheKnight
@@ -84,7 +86,7 @@ public class Spells {
      * From technical standpoint the method directly subtracts from the
      * monster health pool, values are grabbed via getter Map methods.
      */
-    private static void lightningTouch() {
+    protected static void lightningTouch() {
         int manaCost = 5;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");

@@ -1,13 +1,13 @@
 package knight;
 
+import enemies.TheBrute;
 import gameworld.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 import static gameworld.Map.getCurrentPosition;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class TheKnightTest {
@@ -95,6 +95,16 @@ class TheKnightTest {
         assertEquals(2, TheKnight.getPosition().horizontal);
         assertEquals(4,TheKnight.getPosition().vertical);
     }
+
+    @Test
+    void testDamageProjection () {
+        TheBrute targetDummy = new TheBrute("Target dummy",500,0,0);
+        TheKnight.resolveAttack(0,targetDummy);
+        assertTrue(targetDummy.getHealth() <= 485 && targetDummy.getHealth()>=470);
+        
+    }
+
+
 
     private void moveKnightTest(char x) {
 
