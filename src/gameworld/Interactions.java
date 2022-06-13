@@ -6,12 +6,31 @@ import knight.TheKnight;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactored on 13.06.2022.
+ *
+ * <p>
+ *     This class holds all of the room oriented
+ *     interactions player can execute in the
+ *     game world.
+ *     As such, it's primary function is to facilitate interactions
+ *     with NPCs. Which is marked by corresponding.
+ *     Room type attribute in the Room class.
+ *     In other cases it will simply provide flavor text to the player.
+ * </p>
+ * @see Room
+ * @see RoomType
+ */
 public class Interactions {
     private static int iteratorInfo;
     private static final ArrayList<String> scoutInfo = new ArrayList<>();
     private static int iteratorWeaponsmith = 1;
     private static int iteratorArmorsmith = 1;
 
+    /**
+     * Factory function for the Scout dialogues.
+     */
     public static void initializeDialogues() {
         scoutInfo.add("Hail, Knight of the King! *He hits his chest-plate with his right arm*");
         scoutInfo.add("""
@@ -49,6 +68,16 @@ public class Interactions {
         scoutInfo.add("One last thing. Ecclesiastic chaplains prepared this blessed concoction for your quest, good luck!");
     }
 
+    /**
+     * This function is invoked when player enters the
+     * 'interact' command in the main control loop.
+     * depending on the room occupied, additional functions are called.
+     *
+     * @param input Scanner object passed from the main
+     *
+     * @see Room
+     * @see RoomType
+     */
     public static void attemptInteraction (Scanner input) {
         RoomType type = Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(),TheKnight.getPosition().getVertical()).roomBehavior;
 
@@ -62,7 +91,16 @@ public class Interactions {
         }
     }
 
-    public static void restAtInn (Scanner input) {
+    /**
+     * This function is called on the 'restable'
+     * rooms. It asks the player whether he is okay
+     * with the price for using the rest services, and if so
+     * resets his health and mana to the maximal values.
+     *
+     * @param input Scanner object passed from the main.
+     * @see TheKnight
+     */
+    private static void restAtInn (Scanner input) {
         int restingPrice = 300;
         System.out.println("Do you want to rest and regain strength?");
         System.out.println("It will cost you " + ConsoleColors.YELLOW + "300" + ConsoleColors.RESET + " gold" );
@@ -89,7 +127,24 @@ public class Interactions {
 
     }
 
-    public static void getInfo () {
+    /**
+     * This method is called when interacting with
+     * 'talkable' rooms. It simply prints
+     * String info for the player, this contains tips
+     * about the gameplay of tha game.
+     *
+     * Take note that the method invokes two calls
+     * to static values
+     * IteratorInfo - which is simple integer used for iterating over
+     * the ArrayList holding the strings.
+     * and
+     * scoutInfo - the arrayList itself.
+     *
+     * @throws ArrayIndexOutOfBoundsException nonStandard behavior, should only occur on erroneous builds of the application
+     *                                          programme by default checks for iterator position and sets it back to 0
+     *                                          on outOfBounds indexes.
+     */
+    private static void getInfo () {
         try {
             System.out.println(scoutInfo.get(iteratorInfo));
             iteratorInfo++;
@@ -100,7 +155,16 @@ public class Interactions {
         }
     }
 
-    public static void trade (Scanner input) {
+    /**
+     * Method is invoked when interact is called
+     * on 'tradeable' rooms.
+     *
+     * Method uses while loop to simplify repeated trading
+     * As such, the method expects specific user input for breaking the loop.
+     *
+     * @param input Scanner object passed from the main
+     */
+    private static void trade (Scanner input) {
 
         System.out.println("Locals do not have much, but they can help you.");
         System.out.println("There is an " + ConsoleColors.SIMPLE_BOLD + ConsoleColors.SIMPLE_UNDERLINE + "armorsmith" + ConsoleColors.RESET +  " who might help you retrofit and pad your"+ ConsoleColors.GREEN + " armor." + ConsoleColors.RESET);
@@ -127,6 +191,19 @@ public class Interactions {
         }
     }
 
+    /**
+     * Extension of the trade method.
+     * If the player specified through input that he is seeking
+     * armor upgrades, this method is called and asks for confirmation.
+     * If confirmation is given. It modifies TheKnight attributes accordingly.
+     *
+     * Take note that the function modifies static value - iteratorArmorsmith,
+     * which is an integer value used as a price modifier to create diminishing
+     * returns on repeated upgrades.
+     *
+     * @param input Scanner object passed by the main function
+     * @see TheKnight
+     */
     private static void armorUpgrade (Scanner input) {
         int defaultPrice = 125;
         int price = defaultPrice * iteratorArmorsmith;
@@ -151,6 +228,20 @@ public class Interactions {
         }
     }
 
+
+    /**
+     * Extension of the trade method.
+     * If the player specified through input that he is seeking
+     * weapon upgrades, this method is called and asks for confirmation.
+     * If confirmation is given. It modifies TheKnight attributes accordingly.
+     *
+     * Take note that the function modifies static value - iteratorWeaponsmith,
+     * which is an integer value used as a price modifier to create diminishing
+     * returns on repeated upgrades.
+     *
+     * @param input Scanner object passed by the main function
+     * @see TheKnight
+     */
     private static void weaponUpgrade (Scanner input) {
         int defaultPrice = 125;
         int price = defaultPrice * iteratorWeaponsmith;

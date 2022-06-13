@@ -1,5 +1,13 @@
 package auxiliary;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactored on 12.06.2022.
+ *
+ * Holds constants with
+ * ANSI escape characters used to
+ * modify standard 8bit color terminal output.
+ */
 public class ConsoleColors {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset

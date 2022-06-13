@@ -3,6 +3,8 @@ package gameLogic;
 import gameworld.Map;
 import knight.TheKnight;
 
+import java.util.Scanner;
+
 /**
  *
  * This class is responsible for maintaining
@@ -16,11 +18,33 @@ import knight.TheKnight;
  */
 public class gameStateHandler {
 
+    /**
+     * Checks TheKnight status on initial control loop iteration.
+     * This would be a result of health pool being depleted, i.e. when
+     * player died in combat, which should trigger the 'game lost'
+     * conditions.
+     * @return boolean tied to TheKnight.isDead value. Returns 'false' when Knights health is positive
+     *          'true' otherwise
+     *
+     * @see TheKnight
+     * @see Main
+     */
     protected static boolean validateKnightState() {
 
         return !TheKnight.getIsDead();
     }
 
+    /**
+     * This simple printing method is called upon
+     * encounter resolution, and updates descriptions of the rooms surrounding the fight
+     * area to reflect the change in the game world.
+     *
+     * Take note that this is not done for the actual fight rooms, as
+     * per design there is not a scenario where player can see the description
+     * of the fight room unless he already won the fight.
+     *
+     * @see Combat#encounter(Scanner)
+     */
     protected static void updateRoomDescriptor () {
         if (Map.getCurrentPosition(2,0).getRoomEnemy() == null) {
             Map.getCurrentPosition(2,1).setDescription("""
@@ -73,6 +97,19 @@ public class gameStateHandler {
         }
     }
 
+    /**
+     * This method checks for the room status
+     * of the RoomEnemy attribute. If all other
+     * enemies on the map are dead, it sets the
+     * final boss room as unlocked, allowing the player to proceed
+     * to the endgame.
+     *
+     * Take note that the return value of method is used to set the value of the
+     * flag in the Main function.
+     *
+     * @return 'false' if The check should be repeated in the Main function (all enemies are not dead yet)
+     *          'true' if check is passed and is no longer required to be repeated.
+     */
     protected static boolean unlockFinalBoss() {
         if (Map.getCurrentPosition(2,0).getRoomEnemy() == null && Map.getCurrentPosition(2,4).getRoomEnemy() == null)
         {
@@ -84,6 +121,14 @@ public class gameStateHandler {
         return false;
     }
 
+    /**
+     * After the endgame flag is triggered, method is called
+     * on each iteration of the control cycle to check if
+     * final boss is dead, if so, returns true which triggers the
+     * win condition.
+     * @return 'false' if final boss is still alive
+     *          'true' otherwise.
+     */
     protected static boolean gameWon(){
         return Map.getCurrentPosition(0, 2).getRoomEnemy() == null;
     }

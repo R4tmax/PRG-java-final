@@ -9,19 +9,56 @@ import items.ConsumableType;
 import items.MoneyLoot;
 import knight.TheKnight;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactored on 13.06.2022.
+ *
+ * Intermediary between the Room class and
+ * TheKnight class.
+ * Creates statically declared gameArea
+ * as two-dimensional array of Rooms.
+ * The class as such only contains basic printing functions
+ * and a getter, since most of the interactions are executed based on TheKnight
+ * coordinates.
+ *
+ * @see TheKnight
+ * @see knight.KnightCoordinates
+ * @see Room
+ */
 public class Map {
     private static final Room [][] gameMap = new Room[5][5];
 
+    /**
+     * Modified getter for the gameMap Rooms.
+     * Usually accepts KnightCoordinates as input parameter,
+     * but can be called directly with integer values.
+     *
+     * Take not that since the game area is 2D, only X and Y values are required.
+     *
+     * @param x Integer representing X coordinate value of the game area.
+     * @param y Integer representing Y coordinate value of the game area.
+     * @return Room instance at given coordinates
+     */
     public static Room getCurrentPosition(int x, int y) {
         return gameMap[x][y];
     }
 
 
+    /**
+     * Simple printing function.
+     * By design, it only provides name
+     * and descriptor info for the
+     * player.
+     */
     public static void printPosition () {
         System.out.println(ConsoleColors.SIMPLE_UNDERLINE + ConsoleColors.SIMPLE_BOLD +  Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(), TheKnight.getPosition().getVertical()).name);
         System.out.println(ConsoleColors.RESET + Map.getCurrentPosition(TheKnight.getPosition().getHorizontal(), TheKnight.getPosition().getVertical()).description);
     }
 
+    /**
+     * Deprecated printing function used for testing
+     * the game area status.
+     */
     public static void printMap () {
         for (int i = 0; i < Map.gameMap.length; i++) {
             for (int j = 0; j < Map.gameMap.length; j++) {
@@ -31,6 +68,15 @@ public class Map {
         }
     }
 
+    /**
+     * Factory function for the gameArea 2D array.
+     * Fills the game world with data. Calls constructors
+     * where necessary.
+     *
+     * @see enemies.Monster
+     * @see items.Item
+     * @see Room
+     */
     public static void fillMap () {
 
         //First row - Northernmost
