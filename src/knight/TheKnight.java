@@ -93,10 +93,6 @@ public class TheKnight {
         return position;
     }
 
-    public static void setPosition(KnightCoordinates position) {
-        TheKnight.position = position;
-    }
-
     public static boolean getIsDead() {
         return isDead;
     }
@@ -168,6 +164,18 @@ public class TheKnight {
 
     }
 
+    /**
+     * This method handles the damage dealt by the
+     * Knight to the other entities in combat.
+     *
+     * It works by simply taking already calculated randomized values
+     * which are added the TheKnight damage attribute.
+     * Math function then determines whether the hit is critical hit or not
+     * (double damage) and substracts the value of the enemy instance
+     *
+     * @param damageValue Integer - Precalculated value passed from Combat class with randomized damage modifier
+     * @param enemyPresent Reference to the instance of currently fought monster
+     */
     public static void resolveAttack(int damageValue, Monster enemyPresent) {
         damageValue += TheKnight.damage;
         double rollForCrit = Math.random();
@@ -180,14 +188,28 @@ public class TheKnight {
     }
 
 
+    /**
+     * This function simply assures that currentHealth
+     * can never exceed MAX_HEALTH, take note that
+     * below zero checks are handled separately.
+     */
     public static void preventOverheal () {
         if (TheKnight.currentHealth > TheKnight.MAX_HEALTH) TheKnight.currentHealth = TheKnight.MAX_HEALTH;
     }
 
+
+    /**
+     * This function simply assures that currentMana
+     * can never exceed MAX_MANA, take note that
+     * below zero checks are handled separately.
+     */
     public static void preventOvercast() {
         if (TheKnight.currentMana > TheKnight.MAX_MANA) TheKnight.currentMana = TheKnight.MAX_MANA;
     }
 
+    /**
+     * This method prints the stats of the main character on demand.
+     */
     public static void printKnightStatusExploration () {
         System.out.println("Current health: " + ConsoleColors.RED + TheKnight.currentHealth + ConsoleColors.RESET);
         if (TheKnight.currentMana > 0) System.out.println("Current mana: " + ConsoleColors.CYAN + TheKnight.currentMana + ConsoleColors.RESET);
@@ -196,6 +218,11 @@ public class TheKnight {
         System.out.println("Your armor value is: " + ConsoleColors.GREEN +TheKnight.armor + ConsoleColors.RESET);
         System.out.println("You have " + ConsoleColors.YELLOW + TheKnight.goldHeld + ConsoleColors.RESET + " gold coins at your disposal.");
     }
+
+    /**
+     * This method prints stats relevant
+     * to the combat encounters each combat turn.
+     */
     public static void printKnightStatusCombat () {
         System.out.println("Current health: " + ConsoleColors.RED + TheKnight.currentHealth + ConsoleColors.RESET);
         if (TheKnight.currentMana > 0) System.out.println("Current mana: " + ConsoleColors.CYAN + TheKnight.currentMana + ConsoleColors.RESET);
@@ -204,12 +231,26 @@ public class TheKnight {
         System.out.println("Your armor value is: " + ConsoleColors.GREEN +TheKnight.armor + ConsoleColors.RESET);
     }
 
+    /**
+     * This method uses for-each loop to iterate over
+     * entire inventory, prints name of every consumable item.
+     * Take note that nothing is outputted for empty inventory
+     */
     public static void printInventoryContent () {
         for (Consumable item : inventory ) {
             System.out.println(item.getName());
         }
     }
 
+    /**
+     * This method allows using items currently held in the inventory.
+     * Take note that this method can be called from combat as well as
+     * exploration.
+     * Prints warning message for user when attempting to use nonexistent
+     * item.
+     *
+     * @param input Scanner object passed from the Main
+     */
     public static void useItem(Scanner input) {
         System.out.println("Please enter the name of item you want to use.");
         String toUse = input.nextLine();
@@ -226,6 +267,10 @@ public class TheKnight {
         System.out.println("No such item was found");
     }
 
+    /**
+     * Prints the list of commands invoked
+     * during exploration with 'help' command.
+     */
     public static void printCommandListExploration () {
         System.out.println("""
                 Following commands are available to you at the moment:
@@ -242,6 +287,10 @@ public class TheKnight {
                 """);
     }
 
+    /**
+     * Prints the list of commands invoked
+     * during combat with 'help' command.
+     */
     public static void printCommandListCombat() {
         System.out.println(""" 
                 Following commands are available to you at the moment:

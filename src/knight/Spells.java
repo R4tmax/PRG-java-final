@@ -5,8 +5,40 @@ import gameworld.RoomType;
 
 import java.util.Scanner;
 
+/**
+ * @author Martin Kadlec
+ * @version Last refactored on 13.06.2022.
+ *
+ * <p>
+ *     Class representing abstraction of the
+ *     different spells available to the player.
+ *
+ *     Each spell behaves as a self contained method, although most spells
+ *     share certain similarities.
+ *
+ *     In general, spells are either buffs or methods of attack.
+ *     Casts can be attempted both during map exploration or
+ *     combat, but may yield different results depending on the context.
+ *
+ *     Take note that the entire class is created using
+ *     static modifiers.
+ * </p>
+ *
+ * @see TheKnight
+ * @see gameLogic.Combat
+ * @see gameLogic.Main
+ */
 public class Spells {
 
+    /**
+     * Public intermediary for the Spells class.
+     * Method is called by user input and asks for further
+     * input. Mistyping a spell name or typing
+     * nonexistent spell is considered a miscast for purposes of combat
+     * and turn is forfeited for the player.
+     *
+     * @param input Scanner object passed from the main.
+     */
     public static void castSpells(Scanner input) {
         System.out.println("Which spell do you want to cast?");
         String spellName = input.nextLine();
@@ -15,7 +47,7 @@ public class Spells {
             case "lightningtouch" -> Spells.lightningTouch();
             case "heal" -> Spells.heal();
             case "smite" -> Spells.holySmite();
-            case "greaterlightningstrike" -> Spells.lightningSpear();
+            case "lightningstrike" -> Spells.lightningStrike();
             case "prayerofstrength" -> Spells.prayerOfStrength();
             case "prayerofresolve" -> Spells.prayerOfResolve();
             default -> System.out.println("You don't know such a spell!");
@@ -24,14 +56,17 @@ public class Spells {
     }
 
 
-
+    /**
+     * Prints available spells and their effects
+     * to the user.
+     */
     public static void printSpelllist () {
         System.out.println("""
                 You have following spells at your disposal:
                 => LIGHTNING TOUCH - Deals somewhat minor damage, but is very cheap to cast.
                 => HEAL - heals you for a moderate amount for a modest mana cost
                 => SMITE - both heals you and damages your opponent, slightly more expensive than the heal
-                => GREATER LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely!!
+                => LIGHTNING STRIKE - Deals enormous damage to your opponent, but drains your mana completely!!
                 => PRAYER OF STRENGTH - Improves your damage for the rest of the game, but it is rather mana taxing. Requires concentration!
                 => PRAYER OF RESOLVE - Improves your armor for the rest of the game, but it is rather mana taxing. Requires concentration!
                 
@@ -39,6 +74,16 @@ public class Spells {
                 """);
     }
 
+    /**
+     * This spell deals minor damage for a
+     * small mana cost.
+     *
+     * To prevent casting from empty rooms, breaking if conditional is added
+     * before actual execution of the cast.
+     *
+     * From technical standpoint the method directly subtracts from the
+     * monster health pool, values are grabbed via getter Map methods.
+     */
     private static void lightningTouch() {
         int manaCost = 5;
         if (manaCost > TheKnight.currentMana) {
@@ -46,7 +91,7 @@ public class Spells {
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy() == null){
             System.out.println("No target!");
             return;
         }
@@ -57,6 +102,17 @@ public class Spells {
         System.out.println("Your enemy took a nice hit!");
     }
 
+
+    /**
+     * This spell heals for significant amount of knight total HP.
+     *
+     * From technical standpoint the method directly adds to the
+     * Knight health pool, values are approached directly thanks to
+     * the static TheKnight modifiers.
+     *
+     * Take note that auxiliary functions are called to
+     * prevent undesirable effects.
+     */
     private static void heal() {
         int manaCost = 15;
         if (manaCost > TheKnight.currentMana) {
@@ -70,14 +126,25 @@ public class Spells {
         System.out.println("You feel better!");
     }
 
+    /**
+     * Combines functionalities of lightning touch and heal.
+     * With modified values.
+     *
+     *
+     * Take note that from technical standpoint this
+     * is considered to be offensive spell, and as such cannot be used
+     * outside of combat.
+     * @see Spells#lightningTouch()
+     * @see Spells#heal()
+     */
     private static void holySmite() {
-        int manaCost = 20;
+        int manaCost = 25;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy() == null){
             System.out.println("No target!");
             return;
         }
@@ -90,14 +157,19 @@ public class Spells {
         System.out.println("You feel slightly better and your enemy took a hit!");
     }
 
-    private static void lightningSpear () {
+    /**
+     * Supercharged version of lightning touch.
+     *
+     * @see Spells#lightningTouch()
+     */
+    private static void lightningStrike () {
         int manaCost = 50;
         if (manaCost > TheKnight.currentMana) {
             System.out.println("Not enough mana to cast!");
             return;
         }
 
-        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomBehavior() != RoomType.HOSTILE){
+        if (Map.getCurrentPosition(TheKnight.position.horizontal,TheKnight.position.vertical).getRoomEnemy() == null){
             System.out.println("No target!");
             return;
         }
@@ -108,6 +180,13 @@ public class Spells {
         System.out.println("Your enemy took a massive hit!");
     }
 
+    /**
+     * Permanently increases armor value of
+     * The Knight upon use.
+     *
+     * Take note that trying to cast this in
+     * 'hostile' rooms will break cause miscast.
+     */
     private static void prayerOfResolve () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
@@ -123,10 +202,17 @@ public class Spells {
         }
 
         TheKnight.currentMana -= manaCost;
-        TheKnight.armor += 1;
+        TheKnight.armor += 2;
         System.out.println("You feel better suited to deal with the task at hand");
     }
 
+    /**
+     * Permanently increases damage value of
+     * The Knight upon use.
+     *
+     * Take note that trying to cast this in
+     * 'hostile' rooms will break cause miscast.
+     */
     private static void prayerOfStrength () {
         int manaCost = 35;
         if (manaCost > TheKnight.currentMana) {
