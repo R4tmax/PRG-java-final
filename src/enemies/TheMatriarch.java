@@ -7,9 +7,11 @@ import knight.TheKnight;
  * @author Martin Kadlec
  * @version Last refactored on 12.06.2022.
  *
- * Subtype of the Monster class.
- * Please see the super type for more info
- * on attributes of the class.
+ *  <p>
+ *      Subtype of the Monster class.
+ *      Please see the super type for more info
+ *      on attributes of the class.
+ *  </p>
  *
  * @see Monster
  * @see HostileActions

@@ -9,8 +9,10 @@ import java.util.logging.SimpleFormatter;
  * @author Martin Kadlec
  * @version Last refactored on 14.06.2022
  *
- * Simple logging component used to output
- * detected exceptions into provided text file.
+ * <p>
+ *      Simple logging component used to output
+ *      detected exceptions into provided text file.
+ * </p>
  *
  */
 public class LogPrinter {

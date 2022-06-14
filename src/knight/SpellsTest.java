@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Known issues - Spell class sometimes fails to resolve
- * for no apparent reason.
+ * for no apparent reason. Workaround -> rebuild the test
  */
 class SpellsTest {
 

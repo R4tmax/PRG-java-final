@@ -4,8 +4,10 @@ package gameworld;
  * @author Martin Kadlec
  * @author Last refactored on 09.06.2022
  *
- * ENUM holding the possible interaction types for the Rooms.
- * See docs on specific enumerations for more info.
+ * <p>
+ *      ENUM holding the possible interaction types for the Rooms.
+ *      See docs on specific enumerations for more info.
+ * </p>
  * @see Interactions
  * @see Room
  */

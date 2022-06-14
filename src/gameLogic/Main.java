@@ -13,14 +13,16 @@ import java.util.logging.Level;
  * @author Martin Kadlec
  * @version Project started 16.5. 2022, last refactored on 12.6.2022
  *
- * Main function operates as primary programme executor.
- * It uses Scanner object to process stdin and parses it into switch cases.
- * Said Scanner object is passed if further nesting is required for user input.
- * Elementary regex and String operations are used to sanitize the input.
- * Before the switch loop is reached, Setup class methods are invoked to prepare initial data.
- * By design, the class operates with other members of the gameLogic package and TheKnight class,
- * which represents the main character.
- * More data will is available at the relevant methods or the manual.
+ * <p></p>
+ *      Main function operates as primary programme executor.
+ *      It uses Scanner object to process stdin and parses it into switch cases.
+ *      Said Scanner object is passed if further nesting is required for user input.
+ *      Elementary regex and String operations are used to sanitize the input.
+ *      Before the switch loop is reached, Setup class methods are invoked to prepare initial data.
+ *      By design, the class operates with other members of the gameLogic package and TheKnight class,
+ *      which represents the main character.
+ *      More data will is available at the relevant methods or the manual.
+ *
  *
  * @see Setup
  * @see TheKnight
@@ -28,6 +30,12 @@ import java.util.logging.Level;
  * @see Combat
  */
 public class Main {
+    /**
+     * Wrapper for the main control loop,
+     * behaves exactly as described in class doc.
+     *
+     * @param args stdin
+     */
     public static void main(String[] args) {
         LogPrinter.initializeLogger();
         Setup.initializeData();

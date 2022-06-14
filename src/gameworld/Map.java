@@ -13,13 +13,15 @@ import knight.TheKnight;
  * @author Martin Kadlec
  * @version Last refactored on 13.06.2022.
  *
- * Intermediary between the Room class and
- * TheKnight class.
- * Creates statically declared gameArea
- * as two-dimensional array of Rooms.
- * The class as such only contains basic printing functions
- * and a getter, since most of the interactions are executed based on TheKnight
- * coordinates.
+ * <p>
+ *      Intermediary between the Room class and
+ *      TheKnight class.
+ *      Creates statically declared gameArea
+ *      as two-dimensional array of Rooms.
+ *      The class as such only contains basic printing functions
+ *      and a getter, since most of the interactions are executed based on TheKnight
+ *      coordinates.
+ * </p>
  *
  * @see TheKnight
  * @see knight.KnightCoordinates

@@ -6,13 +6,14 @@ import knight.TheKnight;
 import java.util.Scanner;
 
 /**
- *
- * This class is responsible for maintaining
- * Top level game states up to date.
- * See respective methods for more information.
- *
  *   @author Martin Kadlec
  *   @version Last refactored on 12.06.2022
+ *
+ *   <p>
+ *      This class is responsible for maintaining
+ *      Top level game states up to date.
+ *      See respective methods for more information
+ *   </p>
  *
  * @see Main
  */

@@ -4,9 +4,12 @@ package auxiliary;
  * @author Martin Kadlec
  * @version Last refactored on 12.06.2022.
  *
- * Holds constants with
- * ANSI escape characters used to
- * modify standard 8bit color terminal output.
+ *
+ * <p>
+ *      Holds constants with
+ *      ANSI escape characters used to
+ *      modify standard 8bit color terminal output.
+ *      </p>
  */
 public class ConsoleColors {
     // Reset

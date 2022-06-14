@@ -10,8 +10,10 @@ import java.util.Date;
  * @author Martin Kadlec
  * @version Last refactored on 12.06.2022.
  *
- * <p> Setup class facilitates the initial 'factory' methods.
- *  and intro of the game. See respective methods for more info.</p>
+ * <p>
+ *     Setup class facilitates the initial 'factory' methods.
+ *     and intro of the game. See respective methods for more info.
+ * </p>
  *
  * @see Main
  */

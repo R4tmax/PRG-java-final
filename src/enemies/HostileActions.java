@@ -4,9 +4,11 @@ package enemies;
  * @author Martin Kadlec
  * @version Last refactored on 10.06.2022.
  *
- * Public interface for use in Monster subtypes.
- * Allows overriding for customized interaction
- * based on different enemy types.
+ *<p>
+ *    Public interface for use in Monster subtypes.
+ *    Allows overriding for customized interaction
+ *    based on different enemy types.
+ *</p>
  *
  * @see Monster
  */
