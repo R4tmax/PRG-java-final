@@ -1,0 +1,47 @@
+Pozadí příběhu:
+Jste rytíř královského řádu, a byl jste vyslán do vzdáleného regionu království.
+Aby jste vyšetřil příčinu útoků na zdejší farmáře a zásobní cesty.
+Vaše družina dorazila do vesnice a rozbila zde tábor.
+Jaktožto veterán Řádu jste cvičený v nošení těžkých zbrojí a používání kouzel.
+Poražte všechny monstra v oblasti!
+
+Cíl hry:
+Poražení finálního bosse, který se zpřístupní poražením
+všech ostatních jednotek.
+
+High-level specifikace
+-Hra se bude ovládat textovými příkazy přes terminál
+-funkční rozhraní bude implementováno jako switch
+-Hra se bude odehrávat na dvourozměném poli 5x5, na kterém se budou nacházet různé lokace.
+Ne všechny lokace jsou přímo dostupné (Jmenovitě, final boss je zpočátku nedostupný)
+    -Centrální lokací je náměstí vsi, hostinec a trh.
+        -Na náměstí lze hovořit ze zvědy z vaší družiny, kteří vám mohou prozradit tipy, jak dál.
+        -V hostinci lze za poplatek odpočívat, což regeneruje HP a Manu.
+        -Na trhu lze koupit silnější předměty, než je váš starter gear.
+        -V některých místnostech lze sebrat goldy či jiné předměty.
+    -V každé části herní plochy se nachází jedno monstrum, každé monstrum je trochu jiné
+        -Po zahájení souboje s monstrem místnost nelze opustit, dokud monstrum nepadne
+        -pokud při souboji vaše zdraví klesne na 0, hra končí
+        -Poslední a nejsilnější monstrum se bude nacházet v místnosti "Hnízdo", kam vás hra pustí až po poražení
+         dvou dřívějších monster. Úspěšným poražením finálního monstra hra končí.
+        -Poražení finálního monstra je tedy definitivní cíl hry, a jediný způsob, jak hru "vyhrát".
+-Hráč má k dispozici kromě běžných útoků a předmětů také kouzla.
+    -Předměty mají různé, převážně booster effekty
+    -útoky podléhají šanci na kritický zásah, který dává dvojnásobné poškození
+    -Jak útoky hráče, tak monster, mají randomizovaný rozsah poškození
+    -kouzla interagují s okolím v závislosti na prezenci nepřátel a typech místností
+     k jejich seslání je třeba mít dostatek many, což je sekundární zdroj (po zdraví)
+     hlavní postavy.
+-Jako abstrakce herního prostředí jsou využity třídy Map a KnightCoordinates, které zajišťují propojení
+ tříd TheKnight a instancí třídy Room.
+-Hra používá ANSI escape charactery pro modifikaci výstupu na terminál pro lepší čitelnost.
+-Hra používá java.util.logging pro ukládání zachycených nečekaných vyjímek v běhu programu do textového souboru.
+    -Většina vstupů je parsována jako String a v případě neshody s očekávánými casy je vstup ignorován, hra by
+     tedy měla příjímat pouze validní vstupy a neměla způsobovat pády hry vyvolané inputMismatch vyjímkou.
+    -potenciálně problematické funkce jsou ošetřeny pomocí try-catch bloků.
+-K programu je přiložena sada základních jednotkových testů implementovaných pomocí JUnit5.
+-Program je zapouzdřen především pomocí packagů a protected modifikátrů přístupu, mimo jiné
+ kvůli pohodlnosti automatického testování, pro širší interakce jsou využity logicky minimální
+ množiny getterů a setterů, které NEJSOU specifikovány v JavaDocs, pokud nebyly nějak speciálně upraveny.
+-Hra je balancovaná na aktivní využití všech herních prvků.
+-Detailnější dokumentace je zpracována pomocí JavaDocs.
