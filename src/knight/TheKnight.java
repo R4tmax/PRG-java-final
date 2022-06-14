@@ -2,6 +2,7 @@ package knight;
 
 
 import auxiliary.ConsoleColors;
+import auxiliary.LogPrinter;
 import enemies.Monster;
 import gameworld.Map;
 import items.Consumable;
@@ -9,6 +10,7 @@ import items.Consumable;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 import static gameworld.Map.getCurrentPosition;
 
@@ -128,6 +130,7 @@ public class TheKnight {
                 }
             } catch (Exception e) {
                 System.out.println("Error");
+                LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
             }
 
         validateMove(tmpHorizontal,tmpVertical);
@@ -155,10 +158,12 @@ public class TheKnight {
                 TheKnight.position.horizontal = tmpX;
                 TheKnight.position.vertical = tmpY;
             }
-        } catch (Exception e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("You are leaving the game area, try a different direction!");
             TheKnight.position.horizontal = tmpX;
             TheKnight.position.vertical = tmpY;
+        } catch (Exception e){
+                LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
         }
 
 

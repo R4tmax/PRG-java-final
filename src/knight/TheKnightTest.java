@@ -48,6 +48,8 @@ class TheKnightTest {
         assertEquals(1, TheKnight.getPosition().horizontal);
         assertEquals(2,TheKnight.getPosition().vertical);
 
+
+
     }
 
     @Test

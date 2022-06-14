@@ -1,12 +1,13 @@
 package gameLogic;
 
-
+import auxiliary.LogPrinter;
 import gameworld.Interactions;
 import gameworld.Map;
 import items.Item;
 import knight.*;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * @author Martin Kadlec
@@ -28,9 +29,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
-        //TODO: Docs
-        //TODO: Tests
-        //TODO: Loggers on errors.
+        LogPrinter.initializeLogger();
         Setup.initializeData();
         Setup.printPrologue();
         Scanner input = new Scanner(System.in);
@@ -86,6 +85,7 @@ public class Main {
             }
             catch (Exception e) {
                 System.out.println("Input processing error!");
+                LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
             }
 
         }

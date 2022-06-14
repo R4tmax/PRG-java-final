@@ -1,0 +1,2 @@
+čvn 14, 2022 11:42:44 DOP. auxiliary.LogPrinter initializeLogger
+INFO: Init successful!

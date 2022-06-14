@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Known issues - Spell class sometimes fails to resolve
+ * for no apparent reason.
+ */
 class SpellsTest {
 
 
@@ -39,7 +43,6 @@ class SpellsTest {
         assertEquals(35,TheKnight.getCurrentMana());
 
     }
-
 
     @Test
     void testManaConsumption ()

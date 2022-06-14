@@ -3,6 +3,7 @@ package auxiliary;
 import knight.TheKnight;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 import static java.lang.Thread.sleep;
 
@@ -31,6 +32,7 @@ public class Auxiliary {
         try {
             sleep(2500);
         } catch (InterruptedException e) {
+            LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
             throw new RuntimeException(e);
         }
     }
@@ -46,11 +48,17 @@ public class Auxiliary {
         try {
             sleep(1250);
         } catch (InterruptedException e) {
+            LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
             throw new RuntimeException(e);
         }
     }
 
 
+    /**
+     * Auxiliary function used for testing
+     * move to auxiliary package for reusability
+     * reasons to limit boilerplate.
+     */
     public static void sanitizeStats () {
         TheKnight.setCurrentHealth(TheKnight.MAX_HEALTH);
         TheKnight.setCurrentMana(TheKnight.MAX_MANA);

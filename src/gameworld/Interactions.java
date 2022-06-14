@@ -1,10 +1,12 @@
 package gameworld;
 
 import auxiliary.ConsoleColors;
+import auxiliary.LogPrinter;
 import knight.TheKnight;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 /**
  * @author Martin Kadlec
@@ -152,6 +154,7 @@ public class Interactions {
         } catch (Exception e) {
             System.out.println("Incorrect array handling, forcing iteration restart.");
             iteratorInfo = 0;
+            LogPrinter.logger.log(Level.WARNING,"Unexpected Exception !! => ", e );
         }
     }
 
